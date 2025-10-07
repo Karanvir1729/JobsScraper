@@ -1,0 +1,293 @@
+sources:
+  # TrustedPros categories (Canada-wide)
+  - name: "TrustedPros - HVAC"
+    enabled: false
+    category: "HVAC"
+    region: "Canada"
+    start_urls:
+      - "https://trustedpros.ca/company/hvac"
+    listing:
+      item_selector: ["article.company-card", "div.company-card", "div.card"]
+      fields:
+        business_name: ["h3 a::text", "h2 a::text", "a.company-name::text"]
+        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
+        website: ["a.website::attr(href)", "a[href^='http']::attr(href)"]
+      detail_link_selector: "h3 a"
+    detail:
+      fields:
+        email: ["a[href^='mailto:']::attr(href)", "div.email a::attr(href)"]
+        website: ["a.website::attr(href)", "a[href^='http']::attr(href)"]
+        address: ["address::text", "div.address::text"]
+    pagination:
+      next_page_selector: "a[rel='next']"
+
+  - name: "TrustedPros - Plumbers"
+    enabled: false
+    category: "Plumbing"
+    region: "Canada"
+    start_urls:
+      - "https://trustedpros.ca/company/plumbing"
+    listing:
+      item_selector: ["article.company-card", "div.company-card", "div.card"]
+      fields:
+        business_name: ["h3 a::text", "h2 a::text", "a.company-name::text"]
+        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
+        website: ["a.website::attr(href)", "a[href^='http']::attr(href)"]
+      detail_link_selector: "h3 a"
+    detail:
+      fields:
+        email: ["a[href^='mailto:']::attr(href)", "div.email a::attr(href)"]
+        website: ["a.website::attr(href)", "a[href^='http']::attr(href)"]
+        address: ["address::text", "div.address::text"]
+    pagination:
+      next_page_selector: "a[rel='next']"
+
+  - name: "TrustedPros - Lawn Care"
+    enabled: false
+    category: "Lawn Maintenance"
+    region: "Canada"
+    start_urls:
+      - "https://trustedpros.ca/company/lawn-care"
+    listing:
+      item_selector: ["article.company-card", "div.company-card", "div.card"]
+      fields:
+        business_name: ["h3 a::text", "h2 a::text", "a.company-name::text"]
+        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
+        website: ["a.website::attr(href)", "a[href^='http']::attr(href)"]
+      detail_link_selector: "h3 a"
+    detail:
+      fields:
+        email: ["a[href^='mailto:']::attr(href)", "div.email a::attr(href)"]
+        website: ["a.website::attr(href)", "a[href^='http']::attr(href)"]
+        address: ["address::text", "div.address::text"]
+    pagination:
+      next_page_selector: "a[rel='next']"
+
+  # HomeStars in multiple metros (may require selector tuning)
+  - name: "HomeStars - Plumbers (Toronto)"
+    enabled: false
+    category: "Plumbing"
+    region: "Toronto, ON"
+    start_urls:
+      - "https://homestars.com/on/toronto/plumbing"
+    listing:
+      item_selector: ["div.search-result", "div.styles__searchResult"]
+      fields:
+        business_name: ["a.business-name::text", "h2 a::text", "a::text"]
+        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
+        email: ["a[href^='mailto:']::attr(href)"]
+        website: ["a[href*='http']::attr(href)", "a.website::attr(href)"]
+      detail_link_selector: "a.business-name"
+    detail:
+      fields:
+        email: ["a[href^='mailto:']::attr(href)", "div.email a::attr(href)"]
+        website: ["a[href*='http']::attr(href)", "a.website::attr(href)"]
+    pagination:
+      next_page_selector: "a[rel='next']"
+
+  - name: "HomeStars - HVAC (Vancouver)"
+    enabled: false
+    category: "HVAC"
+    region: "Vancouver, BC"
+    start_urls:
+      - "https://homestars.com/bc/vancouver/heating-air-conditioning"
+    listing:
+      item_selector: ["div.search-result", "div.styles__searchResult"]
+      fields:
+        business_name: ["a.business-name::text", "h2 a::text", "a::text"]
+        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
+        email: ["a[href^='mailto:']::attr(href)"]
+        website: ["a[href*='http']::attr(href)", "a.website::attr(href)"]
+      detail_link_selector: "a.business-name"
+    detail:
+      fields:
+        email: ["a[href^='mailto:']::attr(href)", "div.email a::attr(href)"]
+        website: ["a[href*='http']::attr(href)", "a.website::attr(href)"]
+    pagination:
+      next_page_selector: "a[rel='next']"
+
+  - name: "HomeStars - Lawn Care (Calgary)"
+    enabled: false
+    category: "Lawn Maintenance"
+    region: "Calgary, AB"
+    start_urls:
+      - "https://homestars.com/ab/calgary/lawn-care"
+    listing:
+      item_selector: ["div.search-result", "div.styles__searchResult"]
+      fields:
+        business_name: ["a.business-name::text", "h2 a::text", "a::text"]
+        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
+        email: ["a[href^='mailto:']::attr(href)"]
+        website: ["a[href*='http']::attr(href)", "a.website::attr(href)"]
+      detail_link_selector: "a.business-name"
+    detail:
+      fields:
+        email: ["a[href^='mailto:']::attr(href)", "div.email a::attr(href)"]
+        website: ["a[href*='http']::attr(href)", "a.website::attr(href)"]
+    pagination:
+      next_page_selector: "a[rel='next']"
+
+  # YellowPages Canada templates (selectors may vary by page)
+  - name: "YellowPages - Plumbers (Canada)"
+    enabled: false
+    category: "Plumbing"
+    region: "Canada"
+    start_urls:
+      - "https://www.yellowpages.ca/search/si/1/Plumbers/Canada"
+    listing:
+      item_selector: ["div.listing", "article.listing", "div.result"]
+      fields:
+        business_name: ["a.listing__name::text", "h3 a::text", "a.name::text"]
+        phone: ["a.listing__phone::text", "a[href^='tel:']::attr(href)"]
+        email: ["a[href^='mailto:']::attr(href)"]
+        website: ["a.website::attr(href)", "a[href^='http']:not([href*='yellowpages.ca'])::attr(href)"]
+        address: ["div.listing__address::text", "address::text"]
+      detail_link_selector: "a.listing__name"
+    detail:
+      fields:
+        email: ["a[href^='mailto:']::attr(href)"]
+        website: ["a.website::attr(href)", "a[href^='http']:not([href*='yellowpages.ca'])::attr(href)"]
+        address: ["address::text", "div.address::text"]
+    pagination:
+      next_page_selector: "a[rel='next']"
+
+  - name: "YellowPages - HVAC (Canada)"
+    enabled: false
+    category: "HVAC"
+    region: "Canada"
+    start_urls:
+      - "https://www.yellowpages.ca/search/si/1/HVAC/Canada"
+    listing:
+      item_selector: ["div.listing", "article.listing", "div.result"]
+      fields:
+        business_name: ["a.listing__name::text", "h3 a::text", "a.name::text"]
+        phone: ["a.listing__phone::text", "a[href^='tel:']::attr(href)"]
+        email: ["a[href^='mailto:']::attr(href)"]
+        website: ["a.website::attr(href)", "a[href^='http']:not([href*='yellowpages.ca'])::attr(href)"]
+        address: ["div.listing__address::text", "address::text"]
+      detail_link_selector: "a.listing__name"
+    detail:
+      fields:
+        email: ["a[href^='mailto:']::attr(href)"]
+        website: ["a.website::attr(href)", "a[href^='http']:not([href*='yellowpages.ca'])::attr(href)"]
+        address: ["address::text", "div.address::text"]
+    pagination:
+      next_page_selector: "a[rel='next']"
+
+  # 411.ca provincial searches
+  - name: "411.ca - Plumbers (ON/BC/AB/QC)"
+    jsonld_fallback: true
+    category: "Plumbing"
+    region: "ON, BC, AB, QC"
+    start_urls:
+      - "https://411.ca/business/search?q=plumber&st=on"
+      - "https://411.ca/business/search?q=plumber&st=bc"
+      - "https://411.ca/business/search?q=plumber&st=ab"
+      - "https://411.ca/business/search?q=plumber&st=qc"
+    listing:
+      item_selector: ["div.listing", "div.result", "article.listing", "li", "article", "div[class*='result']"]
+      follow_links_selector: ["a[href*='/business/']"]
+      fields:
+        business_name: ["a.business-name::text", "h3 a::text", "a::text"]
+        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
+        website: ["a[href^='http']::attr(href)", "a.website::attr(href)"]
+        address: ["div.address::text", "address::text"]
+      detail_link_selector: ["a.business-name", "h3 a", "a"]
+    detail:
+      fields:
+        email: "a[href^='mailto:']::attr(href)"
+        website: "a[href^='http']"
+    pagination:
+      next_page_selector: "a[rel='next']"
+
+  # Cylex Canada city/category
+  - name: "Cylex - Plumbers (Toronto/Calgary/Vancouver)"
+    enabled: false
+    category: "Plumbing"
+    region: "Toronto, Calgary, Vancouver"
+    start_urls:
+      - "https://www.cylex-canada.ca/toronto/plumbers/"
+      - "https://www.cylex-canada.ca/calgary/plumbers/"
+      - "https://www.cylex-canada.ca/vancouver/plumbers/"
+    listing:
+      item_selector: ["div.list-item", "div.company", "article.company"]
+      fields:
+        business_name: ["h3 a::text", "a::text"]
+        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
+        website: ["a[href^='http']::attr(href)", "a.website::attr(href)"]
+        address: ["address::text", "div.address::text"]
+      detail_link_selector: ["h3 a", "a"]
+    detail:
+      fields:
+        email: "a[href^='mailto:']::attr(href)"
+        website: "a[href^='http']"
+    pagination:
+      next_page_selector: "a[rel='next'], a.next"
+
+  # n49 searches in multiple metros
+  - name: "n49 - HVAC/Plumbers (Toronto/Vancouver)"
+    enabled: false
+    category: "Mixed"
+    region: "Toronto, Vancouver"
+    start_urls:
+      - "https://www.n49.com/search/?q=plumber&loc=Toronto"
+      - "https://www.n49.com/search/?q=hvac&loc=Toronto"
+      - "https://www.n49.com/search/?q=plumber&loc=Vancouver"
+      - "https://www.n49.com/search/?q=hvac&loc=Vancouver"
+    listing:
+      item_selector: ["div.result", "li.result", "div.company-listing"]
+      fields:
+        business_name: ["h3 a::text", "a::text"]
+        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
+        website: ["a[href^='http']::attr(href)", "a.website::attr(href)"]
+        address: ["address::text", "div.address::text"]
+      detail_link_selector: ["h3 a", "a"]
+    detail:
+      fields:
+        email: "a[href^='mailto:']::attr(href)"
+        website: "a[href^='http']"
+    pagination:
+      next_page_selector: "a[rel='next'], a.next"
+
+  # BBB Canada searches (templates)
+  - name: "BBB - Plumbers (Toronto)"
+    enabled: false
+    category: "Plumbing"
+    region: "Toronto, ON"
+    start_urls:
+      - "https://www.bbb.org/ca/search?find_text=plumber&find_loc=Toronto%2C%20ON"
+    listing:
+      item_selector: ["div.SearchResultsCard", "div.styles__resultCard"]
+      fields:
+        business_name: ["h3 a::text", "a::text"]
+        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
+        website: ["a[href^='http']::attr(href)", "a.website::attr(href)"]
+        address: ["address::text", "div.address::text"]
+      detail_link_selector: ["h3 a", "a"]
+    detail:
+      fields:
+        email: "a[href^='mailto:']::attr(href)"
+        website: "a[href^='http']"
+    pagination:
+      next_page_selector: "a[rel='next'], a.next"
+
+  - name: "BBB - HVAC (Vancouver)"
+    enabled: false
+    category: "HVAC"
+    region: "Vancouver, BC"
+    start_urls:
+      - "https://www.bbb.org/ca/search?find_text=hvac&find_loc=Vancouver%2C%20BC"
+    listing:
+      item_selector: ["div.SearchResultsCard", "div.styles__resultCard"]
+      fields:
+        business_name: ["h3 a::text", "a::text"]
+        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
+        website: ["a[href^='http']::attr(href)", "a.website::attr(href)"]
+        address: ["address::text", "div.address::text"]
+      detail_link_selector: ["h3 a", "a"]
+    detail:
+      fields:
+        email: "a[href^='mailto:']::attr(href)"
+        website: "a[href^='http']"
+    pagination:
+      next_page_selector: "a[rel='next'], a.next"

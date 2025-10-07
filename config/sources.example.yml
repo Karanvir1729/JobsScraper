@@ -1,0 +1,74 @@
+# Example configuration for Canadian home services directories.
+# Update selectors to match the target site's HTML. Use your browser's inspector.
+
+sources:
+  - name: "YellowPages Canada - HVAC (template)"
+    category: "HVAC"
+    region: "Canada"
+    start_urls:
+      - "https://www.yellowpages.ca/search/si/1/HVAC/Canada"
+    listing:
+      # Selector for each provider card in search results
+      item_selector: "div.listing"
+      fields:
+        business_name: "a.listing__name::text"
+        phone: "a.listing__phone::text"
+        email: "a[href^='mailto:']::attr(href)"
+        website: "a[href^='http']:not([href*='yellowpages.ca'])"
+        address: "div.listing__address::text"
+        city: "div.listing__city::text"
+        province: "div.listing__province::text"
+        postal_code: "div.listing__postal::text"
+      detail_link_selector: "a.listing__name"
+    detail:
+      fields:
+        email: "a[href^='mailto:']::attr(href)"
+        website: "a[href^='http']:not([href*='yellowpages.ca'])"
+        address: "address::text"
+    pagination:
+      next_page_selector: "a[rel='next']"
+
+  - name: "HomeStars - Plumbers (template)"
+    category: "Plumbing"
+    region: "Canada"
+    start_urls:
+      - "https://homestars.com/on/toronto/plumbing"
+    listing:
+      item_selector: "div.search-result"
+      fields:
+        business_name: "a.business-name::text"
+        phone: "a[href^='tel:']::attr(href)"
+        email: "a[href^='mailto:']::attr(href)"
+        website: "a[href*='http']"
+      detail_link_selector: "a.business-name"
+    detail:
+      fields:
+        email: "a[href^='mailto:']::attr(href)"
+        website: "a[href*='http']"
+    pagination:
+      next_page_selector: "a[rel='next']"
+
+  - name: "TrustedPros - Lawn Care (template)"
+    category: "Lawn Maintenance"
+    region: "Canada"
+    start_urls:
+      - "https://trustedpros.ca/company/lawn-care"
+    listing:
+      item_selector: "article.company-card"
+      fields:
+        business_name: "h3 a::text"
+        phone: "a[href^='tel:']::attr(href)"
+        website: "a[href^='http']"
+      detail_link_selector: "h3 a"
+    detail:
+      fields:
+        email: "a[href^='mailto:']::attr(href)"
+        website: "a[href^='http']"
+    pagination:
+      next_page_selector: "a[rel='next']"
+
+# Notes:
+# - These selectors are templates and likely need updates per site changes.
+# - Respect robots.txt and site's Terms of Service.
+# - Increase time limit and adjust concurrency to reach 1,000+ items across sources.
+

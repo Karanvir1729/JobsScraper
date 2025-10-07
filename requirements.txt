@@ -1,0 +1,7 @@
+streamlit>=1.35.0
+scrapy>=2.11.1
+PyYAML>=6.0.2
+regex>=2024.7.24
+parsel>=1.9.1
+twisted>=22.10.0
+itemadapter>=0.9.0

@@ -1,0 +1,46 @@
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+.Python
+.python-version
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage*
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# Editors/IDE
+.idea/
+.vscode/
+
+# Scrapy/Streamlit caches
+.scrapy/
+.cache/
+.streamlit/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Project output
+output/
+
+# Logs & temp
+*.log
+*.tmp
+*.swp
+*.swo
+
