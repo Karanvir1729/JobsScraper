@@ -1,293 +1,1063 @@
 sources:
-  # TrustedPros categories (Canada-wide)
-  - name: "TrustedPros - HVAC"
-    enabled: false
-    category: "HVAC"
-    region: "Canada"
-    start_urls:
-      - "https://trustedpros.ca/company/hvac"
-    listing:
-      item_selector: ["article.company-card", "div.company-card", "div.card"]
-      fields:
-        business_name: ["h3 a::text", "h2 a::text", "a.company-name::text"]
-        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
-        website: ["a.website::attr(href)", "a[href^='http']::attr(href)"]
-      detail_link_selector: "h3 a"
-    detail:
-      fields:
-        email: ["a[href^='mailto:']::attr(href)", "div.email a::attr(href)"]
-        website: ["a.website::attr(href)", "a[href^='http']::attr(href)"]
-        address: ["address::text", "div.address::text"]
-    pagination:
-      next_page_selector: "a[rel='next']"
-
-  - name: "TrustedPros - Plumbers"
-    enabled: false
-    category: "Plumbing"
-    region: "Canada"
-    start_urls:
-      - "https://trustedpros.ca/company/plumbing"
-    listing:
-      item_selector: ["article.company-card", "div.company-card", "div.card"]
-      fields:
-        business_name: ["h3 a::text", "h2 a::text", "a.company-name::text"]
-        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
-        website: ["a.website::attr(href)", "a[href^='http']::attr(href)"]
-      detail_link_selector: "h3 a"
-    detail:
-      fields:
-        email: ["a[href^='mailto:']::attr(href)", "div.email a::attr(href)"]
-        website: ["a.website::attr(href)", "a[href^='http']::attr(href)"]
-        address: ["address::text", "div.address::text"]
-    pagination:
-      next_page_selector: "a[rel='next']"
-
-  - name: "TrustedPros - Lawn Care"
-    enabled: false
-    category: "Lawn Maintenance"
-    region: "Canada"
-    start_urls:
-      - "https://trustedpros.ca/company/lawn-care"
-    listing:
-      item_selector: ["article.company-card", "div.company-card", "div.card"]
-      fields:
-        business_name: ["h3 a::text", "h2 a::text", "a.company-name::text"]
-        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
-        website: ["a.website::attr(href)", "a[href^='http']::attr(href)"]
-      detail_link_selector: "h3 a"
-    detail:
-      fields:
-        email: ["a[href^='mailto:']::attr(href)", "div.email a::attr(href)"]
-        website: ["a.website::attr(href)", "a[href^='http']::attr(href)"]
-        address: ["address::text", "div.address::text"]
-    pagination:
-      next_page_selector: "a[rel='next']"
-
-  # HomeStars in multiple metros (may require selector tuning)
-  - name: "HomeStars - Plumbers (Toronto)"
-    enabled: false
-    category: "Plumbing"
-    region: "Toronto, ON"
-    start_urls:
-      - "https://homestars.com/on/toronto/plumbing"
-    listing:
-      item_selector: ["div.search-result", "div.styles__searchResult"]
-      fields:
-        business_name: ["a.business-name::text", "h2 a::text", "a::text"]
-        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
-        email: ["a[href^='mailto:']::attr(href)"]
-        website: ["a[href*='http']::attr(href)", "a.website::attr(href)"]
-      detail_link_selector: "a.business-name"
-    detail:
-      fields:
-        email: ["a[href^='mailto:']::attr(href)", "div.email a::attr(href)"]
-        website: ["a[href*='http']::attr(href)", "a.website::attr(href)"]
-    pagination:
-      next_page_selector: "a[rel='next']"
-
-  - name: "HomeStars - HVAC (Vancouver)"
-    enabled: false
-    category: "HVAC"
-    region: "Vancouver, BC"
-    start_urls:
-      - "https://homestars.com/bc/vancouver/heating-air-conditioning"
-    listing:
-      item_selector: ["div.search-result", "div.styles__searchResult"]
-      fields:
-        business_name: ["a.business-name::text", "h2 a::text", "a::text"]
-        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
-        email: ["a[href^='mailto:']::attr(href)"]
-        website: ["a[href*='http']::attr(href)", "a.website::attr(href)"]
-      detail_link_selector: "a.business-name"
-    detail:
-      fields:
-        email: ["a[href^='mailto:']::attr(href)", "div.email a::attr(href)"]
-        website: ["a[href*='http']::attr(href)", "a.website::attr(href)"]
-    pagination:
-      next_page_selector: "a[rel='next']"
-
-  - name: "HomeStars - Lawn Care (Calgary)"
-    enabled: false
-    category: "Lawn Maintenance"
-    region: "Calgary, AB"
-    start_urls:
-      - "https://homestars.com/ab/calgary/lawn-care"
-    listing:
-      item_selector: ["div.search-result", "div.styles__searchResult"]
-      fields:
-        business_name: ["a.business-name::text", "h2 a::text", "a::text"]
-        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
-        email: ["a[href^='mailto:']::attr(href)"]
-        website: ["a[href*='http']::attr(href)", "a.website::attr(href)"]
-      detail_link_selector: "a.business-name"
-    detail:
-      fields:
-        email: ["a[href^='mailto:']::attr(href)", "div.email a::attr(href)"]
-        website: ["a[href*='http']::attr(href)", "a.website::attr(href)"]
-    pagination:
-      next_page_selector: "a[rel='next']"
-
-  # YellowPages Canada templates (selectors may vary by page)
-  - name: "YellowPages - Plumbers (Canada)"
-    enabled: false
-    category: "Plumbing"
-    region: "Canada"
-    start_urls:
-      - "https://www.yellowpages.ca/search/si/1/Plumbers/Canada"
-    listing:
-      item_selector: ["div.listing", "article.listing", "div.result"]
-      fields:
-        business_name: ["a.listing__name::text", "h3 a::text", "a.name::text"]
-        phone: ["a.listing__phone::text", "a[href^='tel:']::attr(href)"]
-        email: ["a[href^='mailto:']::attr(href)"]
-        website: ["a.website::attr(href)", "a[href^='http']:not([href*='yellowpages.ca'])::attr(href)"]
-        address: ["div.listing__address::text", "address::text"]
-      detail_link_selector: "a.listing__name"
-    detail:
-      fields:
-        email: ["a[href^='mailto:']::attr(href)"]
-        website: ["a.website::attr(href)", "a[href^='http']:not([href*='yellowpages.ca'])::attr(href)"]
-        address: ["address::text", "div.address::text"]
-    pagination:
-      next_page_selector: "a[rel='next']"
-
-  - name: "YellowPages - HVAC (Canada)"
-    enabled: false
-    category: "HVAC"
-    region: "Canada"
-    start_urls:
-      - "https://www.yellowpages.ca/search/si/1/HVAC/Canada"
-    listing:
-      item_selector: ["div.listing", "article.listing", "div.result"]
-      fields:
-        business_name: ["a.listing__name::text", "h3 a::text", "a.name::text"]
-        phone: ["a.listing__phone::text", "a[href^='tel:']::attr(href)"]
-        email: ["a[href^='mailto:']::attr(href)"]
-        website: ["a.website::attr(href)", "a[href^='http']:not([href*='yellowpages.ca'])::attr(href)"]
-        address: ["div.listing__address::text", "address::text"]
-      detail_link_selector: "a.listing__name"
-    detail:
-      fields:
-        email: ["a[href^='mailto:']::attr(href)"]
-        website: ["a.website::attr(href)", "a[href^='http']:not([href*='yellowpages.ca'])::attr(href)"]
-        address: ["address::text", "div.address::text"]
-    pagination:
-      next_page_selector: "a[rel='next']"
-
-  # 411.ca provincial searches
-  - name: "411.ca - Plumbers (ON/BC/AB/QC)"
-    jsonld_fallback: true
-    category: "Plumbing"
-    region: "ON, BC, AB, QC"
-    start_urls:
-      - "https://411.ca/business/search?q=plumber&st=on"
-      - "https://411.ca/business/search?q=plumber&st=bc"
-      - "https://411.ca/business/search?q=plumber&st=ab"
-      - "https://411.ca/business/search?q=plumber&st=qc"
-    listing:
-      item_selector: ["div.listing", "div.result", "article.listing", "li", "article", "div[class*='result']"]
-      follow_links_selector: ["a[href*='/business/']"]
-      fields:
-        business_name: ["a.business-name::text", "h3 a::text", "a::text"]
-        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
-        website: ["a[href^='http']::attr(href)", "a.website::attr(href)"]
-        address: ["div.address::text", "address::text"]
-      detail_link_selector: ["a.business-name", "h3 a", "a"]
-    detail:
-      fields:
-        email: "a[href^='mailto:']::attr(href)"
-        website: "a[href^='http']"
-    pagination:
-      next_page_selector: "a[rel='next']"
-
-  # Cylex Canada city/category
-  - name: "Cylex - Plumbers (Toronto/Calgary/Vancouver)"
-    enabled: false
-    category: "Plumbing"
-    region: "Toronto, Calgary, Vancouver"
-    start_urls:
-      - "https://www.cylex-canada.ca/toronto/plumbers/"
-      - "https://www.cylex-canada.ca/calgary/plumbers/"
-      - "https://www.cylex-canada.ca/vancouver/plumbers/"
-    listing:
-      item_selector: ["div.list-item", "div.company", "article.company"]
-      fields:
-        business_name: ["h3 a::text", "a::text"]
-        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
-        website: ["a[href^='http']::attr(href)", "a.website::attr(href)"]
-        address: ["address::text", "div.address::text"]
-      detail_link_selector: ["h3 a", "a"]
-    detail:
-      fields:
-        email: "a[href^='mailto:']::attr(href)"
-        website: "a[href^='http']"
-    pagination:
-      next_page_selector: "a[rel='next'], a.next"
-
-  # n49 searches in multiple metros
-  - name: "n49 - HVAC/Plumbers (Toronto/Vancouver)"
-    enabled: false
-    category: "Mixed"
-    region: "Toronto, Vancouver"
-    start_urls:
-      - "https://www.n49.com/search/?q=plumber&loc=Toronto"
-      - "https://www.n49.com/search/?q=hvac&loc=Toronto"
-      - "https://www.n49.com/search/?q=plumber&loc=Vancouver"
-      - "https://www.n49.com/search/?q=hvac&loc=Vancouver"
-    listing:
-      item_selector: ["div.result", "li.result", "div.company-listing"]
-      fields:
-        business_name: ["h3 a::text", "a::text"]
-        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
-        website: ["a[href^='http']::attr(href)", "a.website::attr(href)"]
-        address: ["address::text", "div.address::text"]
-      detail_link_selector: ["h3 a", "a"]
-    detail:
-      fields:
-        email: "a[href^='mailto:']::attr(href)"
-        website: "a[href^='http']"
-    pagination:
-      next_page_selector: "a[rel='next'], a.next"
-
-  # BBB Canada searches (templates)
-  - name: "BBB - Plumbers (Toronto)"
-    enabled: false
-    category: "Plumbing"
-    region: "Toronto, ON"
-    start_urls:
-      - "https://www.bbb.org/ca/search?find_text=plumber&find_loc=Toronto%2C%20ON"
-    listing:
-      item_selector: ["div.SearchResultsCard", "div.styles__resultCard"]
-      fields:
-        business_name: ["h3 a::text", "a::text"]
-        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
-        website: ["a[href^='http']::attr(href)", "a.website::attr(href)"]
-        address: ["address::text", "div.address::text"]
-      detail_link_selector: ["h3 a", "a"]
-    detail:
-      fields:
-        email: "a[href^='mailto:']::attr(href)"
-        website: "a[href^='http']"
-    pagination:
-      next_page_selector: "a[rel='next'], a.next"
-
-  - name: "BBB - HVAC (Vancouver)"
-    enabled: false
-    category: "HVAC"
-    region: "Vancouver, BC"
-    start_urls:
-      - "https://www.bbb.org/ca/search?find_text=hvac&find_loc=Vancouver%2C%20BC"
-    listing:
-      item_selector: ["div.SearchResultsCard", "div.styles__resultCard"]
-      fields:
-        business_name: ["h3 a::text", "a::text"]
-        phone: ["a[href^='tel:']::attr(href)", "div.phone::text"]
-        website: ["a[href^='http']::attr(href)", "a.website::attr(href)"]
-        address: ["address::text", "div.address::text"]
-      detail_link_selector: ["h3 a", "a"]
-    detail:
-      fields:
-        email: "a[href^='mailto:']::attr(href)"
-        website: "a[href^='http']"
-    pagination:
-      next_page_selector: "a[rel='next'], a.next"
+- name: 411.ca - Plumbing
+  category: Plumbing
+  region: ON, BC, AB, QC
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://411.ca/
+  start_urls:
+  - https://411.ca/business/search?q=Plumbing&st=on
+  - https://411.ca/business/search?q=Plumbing&st=bc
+  - https://411.ca/business/search?q=Plumbing&st=ab
+  - https://411.ca/business/search?q=Plumbing&st=qc
+  listing: &id001
+    item_selector:
+    - div.listing
+    - div.result
+    - article.listing
+    - li
+    - article
+    - div[class*='result']
+    fields:
+      business_name:
+      - a.business-name::text
+      - h3 a::text
+      - a::text
+      phone:
+      - a[href^='tel:']::attr(href)
+      - div.phone::text
+      website:
+      - a[href^='http']::attr(href)
+      - a.website::attr(href)
+      address:
+      - div.address::text
+      - address::text
+    detail_link_selector:
+    - a.business-name
+    - h3 a
+    - a
+    follow_links_selector:
+    - a[href*='/business/']
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - a.pagination__next
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Hotfrog - Plumbing
+  category: Plumbing
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.hotfrog.ca/
+  start_urls:
+  - https://www.hotfrog.ca/find/plumbing
+  listing: &id002
+    item_selector:
+    - article
+    - div.result
+    - li
+    fields:
+      business_name:
+      - h3 a::text
+      - a::text
+      phone:
+      - a[href^='tel:']::attr(href)
+      - div.phone::text
+      website:
+      - a[href^='http']::attr(href)
+      address:
+      - address::text
+      - div.address::text
+    detail_link_selector:
+    - h3 a
+    - a
+    follow_links_selector:
+    - a[href*='/company/']
+    - a[href*='/business/']
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Opendi - Plumbing
+  category: Plumbing
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.opendi.ca/
+  start_urls:
+  - https://www.opendi.ca/search/Plumbing.html
+  listing: &id003
+    item_selector:
+    - article
+    - div.result
+    - li
+    fields:
+      business_name:
+      - h2 a::text
+      - h3 a::text
+      - a::text
+      phone:
+      - a[href^='tel:']::attr(href)
+      website:
+      - a[href^='http']::attr(href)
+      address:
+      - address::text
+      - div.address::text
+    detail_link_selector:
+    - h2 a
+    - h3 a
+    - a
+    follow_links_selector:
+    - a[href*='/place/']
+    - a[href*='/listing/']
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: 411.ca - HVAC
+  category: HVAC
+  region: ON, BC, AB, QC
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://411.ca/
+  start_urls:
+  - https://411.ca/business/search?q=HVAC&st=on
+  - https://411.ca/business/search?q=HVAC&st=bc
+  - https://411.ca/business/search?q=HVAC&st=ab
+  - https://411.ca/business/search?q=HVAC&st=qc
+  listing: *id001
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - a.pagination__next
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Hotfrog - HVAC
+  category: HVAC
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.hotfrog.ca/
+  start_urls:
+  - https://www.hotfrog.ca/find/hvac
+  listing: *id002
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Opendi - HVAC
+  category: HVAC
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.opendi.ca/
+  start_urls:
+  - https://www.opendi.ca/search/HVAC.html
+  listing: *id003
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: 411.ca - Roofing
+  category: Roofing
+  region: ON, BC, AB, QC
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://411.ca/
+  start_urls:
+  - https://411.ca/business/search?q=Roofing&st=on
+  - https://411.ca/business/search?q=Roofing&st=bc
+  - https://411.ca/business/search?q=Roofing&st=ab
+  - https://411.ca/business/search?q=Roofing&st=qc
+  listing: *id001
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - a.pagination__next
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Hotfrog - Roofing
+  category: Roofing
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.hotfrog.ca/
+  start_urls:
+  - https://www.hotfrog.ca/find/roofing
+  listing: *id002
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Opendi - Roofing
+  category: Roofing
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.opendi.ca/
+  start_urls:
+  - https://www.opendi.ca/search/Roofing.html
+  listing: *id003
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: 411.ca - Lawn Care
+  category: Lawn Care
+  region: ON, BC, AB, QC
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://411.ca/
+  start_urls:
+  - https://411.ca/business/search?q=Lawn%20Care&st=on
+  - https://411.ca/business/search?q=Lawn%20Care&st=bc
+  - https://411.ca/business/search?q=Lawn%20Care&st=ab
+  - https://411.ca/business/search?q=Lawn%20Care&st=qc
+  listing: *id001
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - a.pagination__next
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Hotfrog - Lawn Care
+  category: Lawn Care
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.hotfrog.ca/
+  start_urls:
+  - https://www.hotfrog.ca/find/lawn-care
+  listing: *id002
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Opendi - Lawn Care
+  category: Lawn Care
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.opendi.ca/
+  start_urls:
+  - https://www.opendi.ca/search/Lawn+Care.html
+  listing: *id003
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: 411.ca - Electrician
+  category: Electrician
+  region: ON, BC, AB, QC
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://411.ca/
+  start_urls:
+  - https://411.ca/business/search?q=Electrician&st=on
+  - https://411.ca/business/search?q=Electrician&st=bc
+  - https://411.ca/business/search?q=Electrician&st=ab
+  - https://411.ca/business/search?q=Electrician&st=qc
+  listing: *id001
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - a.pagination__next
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Hotfrog - Electrician
+  category: Electrician
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.hotfrog.ca/
+  start_urls:
+  - https://www.hotfrog.ca/find/electrician
+  listing: *id002
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Opendi - Electrician
+  category: Electrician
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.opendi.ca/
+  start_urls:
+  - https://www.opendi.ca/search/Electrician.html
+  listing: *id003
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: 411.ca - Pest Control
+  category: Pest Control
+  region: ON, BC, AB, QC
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://411.ca/
+  start_urls:
+  - https://411.ca/business/search?q=Pest%20Control&st=on
+  - https://411.ca/business/search?q=Pest%20Control&st=bc
+  - https://411.ca/business/search?q=Pest%20Control&st=ab
+  - https://411.ca/business/search?q=Pest%20Control&st=qc
+  listing: *id001
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - a.pagination__next
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Hotfrog - Pest Control
+  category: Pest Control
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.hotfrog.ca/
+  start_urls:
+  - https://www.hotfrog.ca/find/pest-control
+  listing: *id002
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Opendi - Pest Control
+  category: Pest Control
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.opendi.ca/
+  start_urls:
+  - https://www.opendi.ca/search/Pest+Control.html
+  listing: *id003
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: 411.ca - Appliance Repair
+  category: Appliance Repair
+  region: ON, BC, AB, QC
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://411.ca/
+  start_urls:
+  - https://411.ca/business/search?q=Appliance%20Repair&st=on
+  - https://411.ca/business/search?q=Appliance%20Repair&st=bc
+  - https://411.ca/business/search?q=Appliance%20Repair&st=ab
+  - https://411.ca/business/search?q=Appliance%20Repair&st=qc
+  listing: *id001
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - a.pagination__next
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Hotfrog - Appliance Repair
+  category: Appliance Repair
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.hotfrog.ca/
+  start_urls:
+  - https://www.hotfrog.ca/find/appliance-repair
+  listing: *id002
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Opendi - Appliance Repair
+  category: Appliance Repair
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.opendi.ca/
+  start_urls:
+  - https://www.opendi.ca/search/Appliance+Repair.html
+  listing: *id003
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: 411.ca - Moving
+  category: Moving
+  region: ON, BC, AB, QC
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://411.ca/
+  start_urls:
+  - https://411.ca/business/search?q=Moving&st=on
+  - https://411.ca/business/search?q=Moving&st=bc
+  - https://411.ca/business/search?q=Moving&st=ab
+  - https://411.ca/business/search?q=Moving&st=qc
+  listing: *id001
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - a.pagination__next
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Hotfrog - Moving
+  category: Moving
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.hotfrog.ca/
+  start_urls:
+  - https://www.hotfrog.ca/find/moving
+  listing: *id002
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Opendi - Moving
+  category: Moving
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.opendi.ca/
+  start_urls:
+  - https://www.opendi.ca/search/Moving.html
+  listing: *id003
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: 411.ca - Junk Removal
+  category: Junk Removal
+  region: ON, BC, AB, QC
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://411.ca/
+  start_urls:
+  - https://411.ca/business/search?q=Junk%20Removal&st=on
+  - https://411.ca/business/search?q=Junk%20Removal&st=bc
+  - https://411.ca/business/search?q=Junk%20Removal&st=ab
+  - https://411.ca/business/search?q=Junk%20Removal&st=qc
+  listing: *id001
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - a.pagination__next
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Hotfrog - Junk Removal
+  category: Junk Removal
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.hotfrog.ca/
+  start_urls:
+  - https://www.hotfrog.ca/find/junk-removal
+  listing: *id002
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Opendi - Junk Removal
+  category: Junk Removal
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.opendi.ca/
+  start_urls:
+  - https://www.opendi.ca/search/Junk+Removal.html
+  listing: *id003
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: 411.ca - Handyman
+  category: Handyman
+  region: ON, BC, AB, QC
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://411.ca/
+  start_urls:
+  - https://411.ca/business/search?q=Handyman&st=on
+  - https://411.ca/business/search?q=Handyman&st=bc
+  - https://411.ca/business/search?q=Handyman&st=ab
+  - https://411.ca/business/search?q=Handyman&st=qc
+  listing: *id001
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - a.pagination__next
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Hotfrog - Handyman
+  category: Handyman
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.hotfrog.ca/
+  start_urls:
+  - https://www.hotfrog.ca/find/handyman
+  listing: *id002
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Opendi - Handyman
+  category: Handyman
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.opendi.ca/
+  start_urls:
+  - https://www.opendi.ca/search/Handyman.html
+  listing: *id003
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: 411.ca - Painting
+  category: Painting
+  region: ON, BC, AB, QC
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://411.ca/
+  start_urls:
+  - https://411.ca/business/search?q=Painting&st=on
+  - https://411.ca/business/search?q=Painting&st=bc
+  - https://411.ca/business/search?q=Painting&st=ab
+  - https://411.ca/business/search?q=Painting&st=qc
+  listing: *id001
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - a.pagination__next
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Hotfrog - Painting
+  category: Painting
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.hotfrog.ca/
+  start_urls:
+  - https://www.hotfrog.ca/find/painting
+  listing: *id002
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40
+- name: Opendi - Painting
+  category: Painting
+  region: Canada
+  jsonld_fallback: true
+  visit_website_for_email: true
+  headers:
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36
+      (KHTML, like Gecko) Chrome/120.0 Safari/537.36
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Language: en-CA,en;q=0.9
+    Referer: https://www.opendi.ca/
+  start_urls:
+  - https://www.opendi.ca/search/Painting.html
+  listing: *id003
+  detail:
+    fields:
+      email: a[href^='mailto:']::attr(href)
+      website: a[href^='http']::attr(href)
+      address: address::text
+  pagination:
+    next_page_selector:
+    - a[rel='next']
+    - a.next
+    - a[aria-label='Next']
+    - .pagination a[rel='next']
+    param:
+      name: page
+      start: 1
+      max_pages: 40

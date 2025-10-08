@@ -2,6 +2,8 @@ import re
 import json
 from typing import Iterable, List, Optional, Union
 from urllib.parse import urljoin
+from urllib.parse import urlparse, parse_qs, urlencode, urlunparse
+import html as _html
 
 EMAIL_RE = re.compile(r"[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}")
 PHONE_RE = re.compile(r"(\+?1?[\s\-.]?\(?\d{3}\)?[\s\-.]?\d{3}[\s\-.]?\d{4})")
@@ -43,10 +45,55 @@ def clean_text(s: str | None) -> str | None:
     return s.strip() or None
 
 
+def html_unescape(s: str | None) -> str | None:
+    if s is None:
+        return None
+    try:
+        return _html.unescape(s)
+    except Exception:
+        return s
+
+
 def absolute_url(base: str, href: str | None) -> str | None:
     if not href:
         return None
     return urljoin(base, href)
+
+
+def set_query_param(url: str, name: str, value: str | int) -> str:
+    parts = list(urlparse(url))
+    q = parse_qs(parts[4], keep_blank_values=True)
+    q[str(name)] = [str(value)]
+    parts[4] = urlencode(q, doseq=True)
+    return urlunparse(parts)
+
+
+def get_query_int(url: str, name: str, default: int = 1) -> int:
+    try:
+        qs = parse_qs(urlparse(url).query)
+        v = qs.get(str(name))
+        if v:
+            return int(v[0])
+    except Exception:
+        pass
+    return default
+
+
+def _deobfuscate_email_text(text: str) -> str:
+    s = html_unescape(text) or ""
+    repl = [
+        (r"\s*\[at\]\s*", "@"),
+        (r"\s*\(at\)\s*", "@"),
+        (r"\s+at\s+", "@"),
+        (r"\s*\{at\}\s*", "@"),
+        (r"\s*\[dot\]\s*", "."),
+        (r"\s*\(dot\)\s*", "."),
+        (r"\s+dot\s+", "."),
+        (r"\s*\{dot\}\s*", "."),
+    ]
+    for pattern, val in repl:
+        s = re.sub(pattern, val, s, flags=re.IGNORECASE)
+    return s
 
 
 def discover_email_from_selector(sel) -> str | None:
@@ -54,12 +101,24 @@ def discover_email_from_selector(sel) -> str | None:
     mailto = sel.css('a[href^="mailto:"]::attr(href)').get()
     if mailto:
         return clean_text(mailto.replace("mailto:", "").split("?")[0])
-    # Next, regex scan visible text (limit to reasonable length)
-    text = sel.get()
+    # Next, regex scan visible text with deobfuscation
+    texts = sel.css('::text').getall()
+    text = " ".join(texts[:500]) if texts else (sel.get() or "")
+    text = _deobfuscate_email_text(text)
     if text:
         m = EMAIL_RE.search(text)
         if m:
             return m.group(0)
+    # Look for common attributes
+    data_email = sel.css('[data-email]::attr(data-email)').get()
+    if data_email and EMAIL_RE.search(data_email):
+        return EMAIL_RE.search(data_email).group(0)
+    user = sel.css('[data-user]::attr(data-user)').get()
+    domain = sel.css('[data-domain]::attr(data-domain)').get()
+    if user and domain:
+        cand = f"{user}@{domain}"
+        if EMAIL_RE.search(cand):
+            return cand
     return None
 
 

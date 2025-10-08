@@ -12,6 +12,9 @@ def main():
     ap.add_argument("--config", required=True, help="Path to YAML sources file")
     ap.add_argument("--csv", required=True, help="Output CSV path")
     ap.add_argument("--timeout", type=int, default=300, help="CLOSESPIDER_TIMEOUT seconds")
+    ap.add_argument("--summary", default=None, help="Path to write JSON summary with per-source counts")
+    ap.add_argument("--errors", default=None, help="Path to write JSON errors per source")
+    ap.add_argument("--min-per-source", type=int, default=0, help="Target minimum items per source (guides pagination)")
     ap.add_argument("--max-items", type=int, default=0, help="CLOSESPIDER_ITEMCOUNT (0 to disable)")
     ap.add_argument("--concurrent", type=int, default=8, help="CONCURRENT_REQUESTS")
     ap.add_argument("--delay", type=float, default=0.5, help="DOWNLOAD_DELAY seconds")
@@ -33,10 +36,15 @@ def main():
     process = CrawlerProcess(settings)
     from scraper.spiders.config_spider import ConfigSpider
 
-    process.crawl(ConfigSpider, sources_file=str(Path(args.config)))
+    process.crawl(
+        ConfigSpider,
+        sources_file=str(Path(args.config)),
+        summary_file=str(args.summary) if args.summary else None,
+        errors_file=str(args.errors) if args.errors else None,
+        min_per_source=int(args.min_per_source),
+    )
     process.start()  # blocking
 
 
 if __name__ == "__main__":
     main()
-
