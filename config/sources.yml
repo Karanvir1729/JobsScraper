@@ -25,12 +25,17 @@ sources:
     - div[class*='result']
     fields:
       business_name:
+      - h2 a::text
       - a.business-name::text
       - h3 a::text
+      - [itemprop='name']::text
+      - a[title]::attr(title)
       - a::text
       phone:
       - a[href^='tel:']::attr(href)
+      - span[itemprop='telephone']::text
       - div.phone::text
+      - .phone::text
       website:
       - a[href^='http']::attr(href)
       - a.website::attr(href)
@@ -38,6 +43,7 @@ sources:
       - div.address::text
       - address::text
     detail_link_selector:
+    - h2 a
     - a.business-name
     - h3 a
     - a
@@ -45,8 +51,16 @@ sources:
     - a[href*='/business/']
   detail:
     fields:
+      business_name:
+      - h1::text
+      - [itemprop='name']::text
+      phone:
+      - a[href^='tel:']::attr(href)
+      - [itemprop='telephone']::text
       email: a[href^='mailto:']::attr(href)
-      website: a[href^='http']
+      website:
+      - a[href^='http']
+      - [itemprop='url']::attr(href)
       address: address::text
   pagination:
     next_page_selector:
@@ -121,7 +135,7 @@ sources:
     Accept-Language: en-CA,en;q=0.9
     Referer: https://www.opendi.ca/
   start_urls:
-  - https://www.opendi.ca/search/Plumbing.html
+  - https://www.opendi.ca/search/?what=Plumbing&where=Ontario
   listing: &id003
     item_selector:
     - article

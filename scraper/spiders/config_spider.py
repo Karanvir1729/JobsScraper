@@ -260,11 +260,11 @@ class ConfigSpider(scrapy.Spider):
         item_selector = listing.get("item_selector")
         produced = 0
 
-        if response.status and response.status != 200:
+        if response.status and not (200 <= int(response.status) < 300):
             self._errors[source_name].append({
                 "url": response.url,
                 "status": int(response.status),
-                "note": "Non-200 listing page",
+                "note": "Non-2xx listing page",
             })
 
         if item_selector:
@@ -296,6 +296,29 @@ class ConfigSpider(scrapy.Spider):
                         item["email"] = U.discover_email_from_selector(card)
                     if not item.get("phone"):
                         item["phone"] = U.discover_phone_from_selector(card)
+
+                    # If business_name is missing or looks like a generic action link, try better fallbacks
+                    def _looks_bad_name(name: str | None) -> bool:
+                        if not name:
+                            return True
+                        n = str(name).strip().lower()
+                        if len(n) < 2:
+                            return True
+                        bad = {"call", "website", "directions", "view details", "more info"}
+                        return n in bad
+
+                    if _looks_bad_name(item.get("business_name")):
+                        # Try to read text or title from the detail link if present
+                        dl_sel = listing.get("detail_link_selector")
+                        maybe = None
+                        if dl_sel:
+                            maybe = U.extract_first(card, [s + "::text" for s in U.listify(dl_sel)]) or \
+                                    U.extract_attr(card, dl_sel, "title")
+                        if not maybe:
+                            # Try itemprop/name
+                            maybe = U.extract_first(card, "[itemprop='name']::text")
+                        if maybe:
+                            item["business_name"] = maybe
 
                     # Optionally follow detail page for richer data
                     detail_link_sel = listing.get("detail_link_selector")
@@ -408,7 +431,7 @@ class ConfigSpider(scrapy.Spider):
                 yield response.follow(next_url, callback=self.parse_listing, meta=response.meta, headers=cfg.get("headers") or {})
 
     def parse_detail(self, response: scrapy.http.Response):
-        if response.status and response.status != 200:
+        if response.status and not (200 <= int(response.status) < 300):
             try:
                 src_item = response.meta.get("item")
                 src_name = src_item.get("source") if src_item else None
@@ -418,7 +441,7 @@ class ConfigSpider(scrapy.Spider):
                 self._errors[src_name].append({
                     "url": response.url,
                     "status": int(response.status),
-                    "note": "Non-200 detail page",
+                    "note": "Non-2xx detail page",
                 })
         item: ProviderItem = response.meta["item"]
         cfg = response.meta["cfg"]
