@@ -7,20 +7,39 @@ import re
 
 import streamlit as st
 import yaml
+import json
+import csv
 
 import sys
 import subprocess
 from scrapy.utils.project import get_project_settings
 
 
-DEFAULT_CONFIG_PATH = Path("config/sources.yml")
-EXAMPLE_CONFIG_PATH = Path("config/sources.example.yml")
+# Default to JSON config (can still read YAML if provided)
+DEFAULT_CONFIG_PATH = Path("config/sources.json")
+EXAMPLE_CONFIG_PATH = Path("config/sources.example.json")
 OUTPUT_DIR = Path("output")
 
 # Provinces and default categories
 PROVINCES = [
     "AB","BC","MB","NB","NL","NS","NT","NU","ON","PE","QC","SK","YT"
 ]
+
+PROVINCE_NAMES = {
+    "AB": "Alberta",
+    "BC": "British Columbia",
+    "MB": "Manitoba",
+    "NB": "New Brunswick",
+    "NL": "Newfoundland and Labrador",
+    "NS": "Nova Scotia",
+    "NT": "Northwest Territories",
+    "NU": "Nunavut",
+    "ON": "Ontario",
+    "PE": "Prince Edward Island",
+    "QC": "Quebec",
+    "SK": "Saskatchewan",
+    "YT": "Yukon",
+}
 
 DEFAULT_CATEGORIES = [
     # Core trades
@@ -103,6 +122,12 @@ def build_dynamic_sources(selected_sources: list[str], categories: list[str], pr
         "follow_links_selector": ["a[href*='/place/']", "a[href*='/listing/']"],
     }
 
+    sel_yelp = {
+        # We primarily follow links to detail pages and use JSON-LD there
+        # because Yelp listing card CSS changes frequently.
+        "follow_links_selector": ["a[href*='/biz/']"],
+    }
+
     for cat in categories:
         q = cat.strip()
         if not q:
@@ -158,6 +183,43 @@ def build_dynamic_sources(selected_sources: list[str], categories: list[str], pr
                     "param": {"name": "page", "start": 1, "max_pages": 40},
                 },
             })
+        if "Yelp" in selected_sources:
+            # Use the selected provinces as locations for search. Yelp requires a location; using
+            # province codes provides broad results. You can edit locations in the raw config.
+            start_urls = [
+                f"https://www.yelp.ca/search?find_desc={q.replace(' ', '%20')}&find_loc={p}"
+                for p in provinces
+            ]
+            sources.append({
+                "name": f"Yelp - {q}",
+                "category": q,
+                "region": ", ".join(provinces),
+                "jsonld_fallback": True,
+                "visit_website_for_email": visit_web_email,
+                "headers": {**headers, "Referer": "https://www.yelp.ca/"},
+                "start_urls": start_urls,
+                "listing": sel_yelp,
+                # Rely on JSON-LD on detail pages; keep explicit selectors minimal for resilience
+                "detail": {"fields": {}},
+                "pagination": {
+                    "next_page_selector": ["a[rel='next']"],
+                },
+            })
+        if "Yelp API" in selected_sources:
+            # Yelp Fusion API source. Requires env var YELP_API_KEY at runtime.
+            locations = [f"{PROVINCE_NAMES.get(p, p)}, Canada" for p in provinces]
+            sources.append({
+                "name": f"Yelp API - {q}",
+                "category": q,
+                "region": ", ".join(provinces),
+                "api": "yelp",
+                "jsonld_fallback": True,
+                "visit_website_for_email": visit_web_email,
+                "locations": locations,
+                "limit": 50,
+                "max_pages": 10,
+                "locale": "en_CA"
+            })
 
     return {"sources": sources}
 
@@ -165,20 +227,38 @@ def build_dynamic_sources(selected_sources: list[str], categories: list[str], pr
 def ensure_paths():
     OUTPUT_DIR.mkdir(exist_ok=True)
     DEFAULT_CONFIG_PATH.parent.mkdir(exist_ok=True)
-    if not DEFAULT_CONFIG_PATH.exists() and EXAMPLE_CONFIG_PATH.exists():
-        DEFAULT_CONFIG_PATH.write_text(EXAMPLE_CONFIG_PATH.read_text(), encoding="utf-8")
+    if not DEFAULT_CONFIG_PATH.exists():
+        # If a YAML example exists, convert it to JSON; else create a minimal JSON config.
+        yml_example = Path("config/sources.example.yml")
+        if EXAMPLE_CONFIG_PATH.exists():
+            DEFAULT_CONFIG_PATH.write_text(EXAMPLE_CONFIG_PATH.read_text(encoding="utf-8"), encoding="utf-8")
+        elif yml_example.exists():
+            try:
+                data = yaml.safe_load(yml_example.read_text(encoding="utf-8")) or {"sources": []}
+                DEFAULT_CONFIG_PATH.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+            except Exception:
+                DEFAULT_CONFIG_PATH.write_text(json.dumps({"sources": []}, ensure_ascii=False, indent=2), encoding="utf-8")
+        else:
+            DEFAULT_CONFIG_PATH.write_text(json.dumps({"sources": []}, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
 def load_config_text(path: Path) -> str:
     if path.exists():
         return path.read_text(encoding="utf-8")
+    # Default text by extension
+    if path.suffix.lower() == ".json":
+        return json.dumps({"sources": []}, ensure_ascii=False, indent=2)
     return "sources: []\n"
 
 
 def save_config_text(path: Path, text: str) -> None:
-    # Validate YAML before saving to help the user
-    yaml.safe_load(text)
-    path.write_text(text, encoding="utf-8")
+    # Validate and save based on extension
+    if path.suffix.lower() == ".json":
+        json.loads(text)
+        path.write_text(text, encoding="utf-8")
+    else:
+        yaml.safe_load(text)
+        path.write_text(text, encoding="utf-8")
 
 
 def run_scrape(config_path: Path, time_limit_sec: int, max_items: int | None,
@@ -221,6 +301,98 @@ def run_scrape(config_path: Path, time_limit_sec: int, max_items: int | None,
     return csv_path
 
 
+def start_scrape_async(config_path: Path, time_limit_sec: int, max_items: int | None,
+                       concurrent_requests: int, download_delay: float, min_per_source: int) -> dict:
+    """Start the Scrapy spider as a background subprocess and return job info.
+    Stores paths and PID in session_state for polling and UI updates.
+    """
+    ts = datetime.now().strftime("%Y%m%d-%H%M%S")
+    csv_path = OUTPUT_DIR / f"providers-{ts}.csv"
+    summary_path = OUTPUT_DIR / f"providers-{ts}-summary.json"
+    errors_path = OUTPUT_DIR / f"providers-{ts}-errors.json"
+    log_path = OUTPUT_DIR / f"providers-{ts}.log"
+
+    cmd = [
+        sys.executable,
+        str(Path(__file__).parent / "run_spider.py"),
+        "--config", str(config_path),
+        "--csv", str(csv_path),
+        "--timeout", str(int(time_limit_sec)),
+        "--summary", str(summary_path),
+        "--errors", str(errors_path),
+        "--concurrent", str(int(concurrent_requests)),
+        "--delay", str(float(download_delay)),
+        "--min-per-source", str(int(min_per_source)),
+    ]
+    if max_items:
+        cmd += ["--max-items", str(int(max_items))]
+
+    lf = open(log_path, "w", encoding="utf-8")
+    proc = subprocess.Popen(cmd, stdout=lf, stderr=subprocess.STDOUT, text=True)
+
+    job = {
+        "pid": int(proc.pid),
+        "cmd": cmd,
+        "csv_path": str(csv_path),
+        "summary_path": str(summary_path),
+        "errors_path": str(errors_path),
+        "log_path": str(log_path),
+        "started_at": time.time(),
+    }
+    st.session_state["job"] = job
+    st.session_state["last_summary_path"] = str(summary_path)
+    st.session_state["last_errors_path"] = str(errors_path)
+    st.session_state["last_csv_path"] = str(csv_path)
+    return job
+
+
+def _pid_is_running(pid: int) -> bool:
+    try:
+        os.kill(pid, 0)
+    except Exception:
+        return False
+    return True
+
+
+def _rerun():
+    try:
+        st.rerun()
+    except Exception:
+        try:
+            st.experimental_rerun()  # for older Streamlit
+        except Exception:
+            pass
+
+
+def _build_yelp_api_csvs(yelp_api: dict):
+    """Return (overview_csv_bytes, locations_csv_bytes) for Yelp API metrics."""
+    # Overview CSV
+    ov_io = io.StringIO()
+    ov_writer = csv.writer(ov_io)
+    ov_writer.writerow(["source", "api_requests", "businesses", "errors", "locations"])
+    for src, s in (yelp_api or {}).items():
+        ov_writer.writerow([
+            src,
+            int((s or {}).get("api_requests", 0)),
+            int((s or {}).get("businesses", 0)),
+            int((s or {}).get("errors", 0)),
+            len(((s or {}).get("per_location") or {})),
+        ])
+    ov_bytes = ov_io.getvalue().encode("utf-8")
+
+    # Per-location CSV
+    loc_io = io.StringIO()
+    loc_writer = csv.writer(loc_io)
+    loc_writer.writerow(["source", "location", "returned", "reported_total"])
+    for src, s in (yelp_api or {}).items():
+        per = (s or {}).get("per_location") or {}
+        rep = (s or {}).get("reported_totals") or {}
+        for k in per.keys():
+            loc_writer.writerow([src, k, int(per.get(k, 0)), int(rep.get(k, 0))])
+    loc_bytes = loc_io.getvalue().encode("utf-8")
+    return ov_bytes, loc_bytes
+
+
 def main():
     st.set_page_config(page_title="Canada Home Services Scraper", layout="wide")
     ensure_paths()
@@ -240,22 +412,22 @@ def main():
         min_per_source = st.number_input("Minimum items per source", min_value=0, max_value=10000, value=100, step=10,
                                          help="Crawler tries to paginate until at least this many items per source or timeout.")
         st.divider()
-        st.caption("Respect each source's robots.txt and terms.")
 
     st.subheader("Sources Configuration")
-    st.caption("Build from categories or edit raw YAML.")
+    st.caption("Build from categories or edit raw JSON.")
 
     with st.expander("Build from Categories", expanded=True):
-        sel_sources = st.multiselect("Sources", options=["411.ca","Hotfrog","Opendi"], default=["411.ca","Hotfrog","Opendi"]) 
+        sel_sources = st.multiselect("Sources", options=["411.ca","Hotfrog","Opendi","Yelp","Yelp API"], default=["411.ca","Hotfrog","Opendi","Yelp"]) 
         sel_provinces = st.multiselect("Provinces", options=PROVINCES, default=["ON","BC","AB","QC"]) 
         visit_web_email = st.checkbox("Visit business websites to find emails", value=True)
         st.caption("Pick service categories (type to search)")
         sel_categories = st.multiselect("Categories", options=DEFAULT_CATEGORIES, default=["Plumbing","HVAC","Roofing","Lawn Care","Electrician","Pest Control","Appliance Repair","Moving","Junk Removal","Handyman","Painting"]) 
         if st.button("Preview Generated Config"):
-            generated = yaml.safe_dump(build_dynamic_sources(sel_sources, sel_categories, sel_provinces, visit_web_email))
-            st.code(generated, language="yaml")
+            generated_dict = build_dynamic_sources(sel_sources, sel_categories, sel_provinces, visit_web_email)
+            generated = json.dumps(generated_dict, ensure_ascii=False, indent=2)
+            st.code(generated, language="json")
 
-    with st.expander("Raw YAML (advanced)", expanded=False):
+    with st.expander("Raw JSON (advanced)", expanded=False):
         config_text = load_config_text(DEFAULT_CONFIG_PATH)
         current_text = st.session_state.get("config_text", config_text)
         config_editor = st.text_area(
@@ -277,65 +449,98 @@ def main():
         if st.button("Load Example"):
             if EXAMPLE_CONFIG_PATH.exists():
                 st.session_state["config_text"] = EXAMPLE_CONFIG_PATH.read_text(encoding="utf-8")
-                st.experimental_rerun()
+                _rerun()
             else:
                 st.info("No example config shipped.")
     with cols[2]:
         if st.button("Revert to Disk"):
             st.session_state["config_text"] = load_config_text(DEFAULT_CONFIG_PATH)
-            st.experimental_rerun()
+            _rerun()
 
     st.subheader("Run Scraper")
     is_running = st.session_state.get("is_running", False)
     run_clicked = False
     if not is_running:
+        # If the last run just finished, surface success here
+        last_elapsed = st.session_state.get("last_finish_elapsed")
+        last_csv_name = st.session_state.get("last_finish_csv_name")
+        if last_elapsed is not None and last_csv_name:
+            st.success(f"Done in {float(last_elapsed):.1f}s. CSV generated: {last_csv_name}")
         run_clicked = st.button("Run", type="primary")
     else:
-        st.info("Running scraper... please wait")
+        st.info("Once scraper is done running you should should see the output below")
+        # While running, surface the latest CSV found in the output folder if present
+        try:
+            _running_latest = sorted(OUTPUT_DIR.glob("providers-*.csv"), key=lambda p: p.stat().st_mtime, reverse=True)
+            if _running_latest:
+                st.caption(f"Newest CSV detected: {_running_latest[0].name}")
+        except Exception:
+            pass
+        # If we have a background job, show basic status
+        job = st.session_state.get("job") or {}
+        if job:
+            st.caption(f"PID: {job.get('pid')} | CSV: {Path(job.get('csv_path','')).name}")
 
     if run_clicked and not st.session_state.get("is_running", False):
         try:
-            # Build dynamic config from categories
-            generated = yaml.safe_dump(build_dynamic_sources(sel_sources, sel_categories, sel_provinces, visit_web_email), sort_keys=False)
+            # Build dynamic config from categories as JSON
+            generated_dict = build_dynamic_sources(sel_sources, sel_categories, sel_provinces, visit_web_email)
+            generated = json.dumps(generated_dict, ensure_ascii=False, indent=2)
             save_config_text(DEFAULT_CONFIG_PATH, generated)
         except Exception as e:
             st.error(f"Config invalid: {e}")
             return
-
+        # Persist target to session for summary comparisons
+        st.session_state["min_per_source_target"] = int(min_per_source)
         st.session_state["is_running"] = True
-        try:
-            with st.spinner("Running scraper... This will block until it finishes or times out."):
-                start = time.time()
-                # Persist target to session for summary comparisons
-                st.session_state["min_per_source_target"] = int(min_per_source)
-                csv_path = run_scrape(
-                    DEFAULT_CONFIG_PATH,
-                    int(time_limit),
-                    int(max_items) if max_items > 0 else None,
-                    int(concurrent_requests),
-                    float(download_delay),
-                    int(min_per_source),
-                )
-                elapsed = time.time() - start
+        job = start_scrape_async(
+            DEFAULT_CONFIG_PATH,
+            int(time_limit),
+            int(max_items) if max_items > 0 else None,
+            int(concurrent_requests),
+            float(download_delay),
+            int(min_per_source),
+        )
+        st.success(f"Started scraper (PID {job['pid']}). Logs: {job['log_path']}")
+        _rerun()
 
+    # If a job is recorded, poll its status and update UI
+    job = st.session_state.get("job")
+    if job and st.session_state.get("is_running", False):
+        pid = int(job.get("pid"))
+        if not _pid_is_running(pid):
+            st.session_state["is_running"] = False
+            # Compute elapsed time and show success with immediate download
+            try:
+                elapsed = max(0.0, time.time() - float(job.get("started_at") or 0.0))
+            except Exception:
+                elapsed = 0.0
+            csv_path = Path(job.get("csv_path", ""))
             if csv_path.exists():
-                st.success(f"Done in {elapsed:.1f}s. CSV generated: {csv_path}")
-                st.download_button("Download CSV", data=csv_path.read_bytes(), file_name=csv_path.name, mime="text/csv")
+                st.session_state["last_csv_path"] = str(csv_path)
+                st.session_state["last_finish_elapsed"] = float(elapsed)
+                st.session_state["last_finish_csv_name"] = csv_path.name
+                st.success(f"Done in {elapsed:.1f}s. CSV generated: {csv_path.name}")
+                try:
+                    st.download_button(
+                        "Download CSV",
+                        data=csv_path.read_bytes(),
+                        file_name=csv_path.name,
+                        mime="text/csv",
+                        key=f"done-dl-{csv_path.name}"
+                    )
+                except Exception:
+                    pass
             else:
                 st.warning("No CSV produced. Check logs/selectors and try again.")
-        finally:
-            st.session_state["is_running"] = False
-            try:
-                st.experimental_rerun()
-            except Exception:
-                pass
+            # Keep last paths in session; UI below will render summary/errors if present
+            _rerun()
 
         # Show per-source summary and alerts
         summary_file = Path(st.session_state.get("last_summary_path", ""))
         st.subheader("Run Summary")
         if summary_file.exists():
             try:
-                import json
                 data = json.loads(summary_file.read_text(encoding="utf-8"))
                 counts = data.get("counts", {})
                 configured = data.get("configured_sources", [])
@@ -351,6 +556,50 @@ def main():
                     st.warning(f"{len(below_rows)} source(s) are below the target of {target} items. Consider increasing timeout, enabling more regions, or adjusting selectors.")
                 elif rows and not zero_rows:
                     st.success("Fetched items from all configured sources at or above target.")
+                # Yelp API summary if present
+                yelp_api = data.get("yelp_api") or {}
+                if isinstance(yelp_api, dict) and yelp_api:
+                    st.subheader("Yelp API Summary")
+                    yrows = []
+                    for src, s in yelp_api.items():
+                        yrows.append({
+                            "source": src,
+                            "api_requests": int(s.get("api_requests", 0)),
+                            "businesses": int(s.get("businesses", 0)),
+                            "errors": int(s.get("errors", 0)),
+                            "locations": len((s.get("per_location") or {})),
+                        })
+                    if yrows:
+                        st.table(yrows)
+                        ov_csv, loc_csv = _build_yelp_api_csvs(yelp_api)
+                        ts = datetime.now().strftime("%Y%m%d-%H%M%S")
+                        st.download_button(
+                            "Download Yelp API Overview CSV",
+                            data=ov_csv,
+                            file_name=f"yelp_api_overview_{ts}.csv",
+                            mime="text/csv",
+                            key=f"yelp-ov-{ts}"
+                        )
+                        st.download_button(
+                            "Download Yelp API Per-Location CSV",
+                            data=loc_csv,
+                            file_name=f"yelp_api_locations_{ts}.csv",
+                            mime="text/csv",
+                            key=f"yelp-loc-{ts}"
+                        )
+                    with st.expander("Yelp API per-location breakdown"):
+                        for src, s in yelp_api.items():
+                            st.markdown(f"- {src}")
+                            per = s.get("per_location") or {}
+                            rep = s.get("reported_totals") or {}
+                            if per:
+                                rows_pl = [
+                                    {"location": k, "returned": int(per.get(k, 0)), "reported_total": int(rep.get(k, 0))}
+                                    for k in per.keys()
+                                ]
+                                st.table(rows_pl)
+                            else:
+                                st.caption("(no per-location data)")
             except Exception as e:
                 st.info(f"No summary available: {e}")
         else:
@@ -361,7 +610,6 @@ def main():
         st.subheader("Errors")
         if errors_file.exists():
             try:
-                import json
                 edata = json.loads(errors_file.read_text(encoding="utf-8"))
                 rows = []
                 for src, items in edata.items():
@@ -383,24 +631,43 @@ def main():
             st.info("No errors file found.")
 
 
-    # Always show the latest results if available (outside run button flow)
+    # Always show the latest CSV if available, even while running
+    def _find_latest_csv() -> Path | None:
+        try:
+            files = sorted(OUTPUT_DIR.glob("providers-*.csv"), key=lambda p: p.stat().st_mtime, reverse=True)
+            return files[0] if files else None
+        except Exception:
+            return None
+
+    st.subheader("Latest Output")
     last_csv_path = st.session_state.get("last_csv_path")
-    if last_csv_path and not is_running:
-        last_csv = Path(last_csv_path)
-        if last_csv.is_file():
-            st.subheader("Latest Output")
-            try:
-                csv_bytes = last_csv.read_bytes()
-                st.download_button("Download Latest CSV", data=csv_bytes, file_name=last_csv.name, mime="text/csv")
-            except Exception as e:
-                st.warning(f"CSV at {last_csv} couldn't be opened: {e}")
+    last_csv = Path(last_csv_path) if last_csv_path else None
+    if not last_csv or not last_csv.exists():
+        last_csv = _find_latest_csv()
+    if last_csv and last_csv.is_file():
+        try:
+            st.caption(f"File: {last_csv}")
+            csv_bytes = last_csv.read_bytes()
+            st.download_button("Download Latest CSV", data=csv_bytes, file_name=last_csv.name, mime="text/csv", key=f"dl-{last_csv.name}")
+        except Exception as e:
+            st.warning(f"CSV at {last_csv} couldn't be opened: {e}")
+    else:
+        st.info("No CSVs found yet in output/")
+
+    # Auto-refresh while running to surface new CSVs and logs
+    if st.session_state.get("is_running", False):
+        st.caption("Auto-refreshing every 5s while scraper is running…")
+        try:
+            time.sleep(5)
+            _rerun()
+        except Exception:
+            pass
 
     last_summary_path = st.session_state.get("last_summary_path")
     last_summary = Path(last_summary_path) if last_summary_path else None
     if last_summary and last_summary.is_file() and not is_running:
         st.subheader("Last Run Summary")
         try:
-            import json
             data = json.loads(last_summary.read_text(encoding="utf-8"))
             counts = data.get("counts", {})
             configured = data.get("configured_sources", [])
@@ -408,6 +675,49 @@ def main():
             rows = [{"source": s or "(unnamed)", "items_found": int(counts.get(s, 0)), "target": target} for s in configured]
             if rows:
                 st.table(rows)
+            yelp_api = data.get("yelp_api") or {}
+            if isinstance(yelp_api, dict) and yelp_api:
+                st.subheader("Yelp API Summary")
+                yrows = []
+                for src, s in yelp_api.items():
+                    yrows.append({
+                        "source": src,
+                        "api_requests": int(s.get("api_requests", 0)),
+                        "businesses": int(s.get("businesses", 0)),
+                        "errors": int(s.get("errors", 0)),
+                        "locations": len((s.get("per_location") or {})),
+                    })
+                if yrows:
+                    st.table(yrows)
+                    ov_csv, loc_csv = _build_yelp_api_csvs(yelp_api)
+                    ts = datetime.now().strftime("%Y%m%d-%H%M%S")
+                    st.download_button(
+                        "Download Yelp API Overview CSV",
+                        data=ov_csv,
+                        file_name=f"yelp_api_overview_{ts}.csv",
+                        mime="text/csv",
+                        key=f"yelp-last-ov-{ts}"
+                    )
+                    st.download_button(
+                        "Download Yelp API Per-Location CSV",
+                        data=loc_csv,
+                        file_name=f"yelp_api_locations_{ts}.csv",
+                        mime="text/csv",
+                        key=f"yelp-last-loc-{ts}"
+                    )
+                with st.expander("Yelp API per-location breakdown"):
+                    for src, s in yelp_api.items():
+                        st.markdown(f"- {src}")
+                        per = s.get("per_location") or {}
+                        rep = s.get("reported_totals") or {}
+                        if per:
+                            rows_pl = [
+                                {"location": k, "returned": int(per.get(k, 0)), "reported_total": int(rep.get(k, 0))}
+                                for k in per.keys()
+                            ]
+                            st.table(rows_pl)
+                        else:
+                            st.caption("(no per-location data)")
         except Exception as e:
             st.info(f"No summary available: {e}")
 
@@ -416,7 +726,6 @@ def main():
     if last_errors and last_errors.is_file() and not is_running:
         st.subheader("Last Run Errors")
         try:
-            import json
             edata = json.loads(last_errors.read_text(encoding="utf-8"))
             rows = []
             for src, items in edata.items():

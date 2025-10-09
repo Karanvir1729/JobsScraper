@@ -1,0 +1,53 @@
+{
+  "sources": [
+    {
+      "name": "Yelp - Plumbing",
+      "category": "Plumbing",
+      "region": "ON, BC, AB, QC",
+      "jsonld_fallback": true,
+      "visit_website_for_email": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.yelp.ca/"
+      },
+      "start_urls": [
+        "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=ON",
+        "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=BC",
+        "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=AB",
+        "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=QC"
+      ],
+      "listing": {
+        "follow_links_selector": [
+          "a[href*='/biz/']"
+        ]
+      },
+      "detail": {
+        "fields": {}
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']"
+        ]
+      }
+    },
+    {
+      "name": "Yelp API - Plumbing",
+      "category": "Plumbing",
+      "region": "ON, BC, AB, QC",
+      "api": "yelp",
+      "jsonld_fallback": true,
+      "visit_website_for_email": true,
+      "locations": [
+        "Ontario, Canada",
+        "British Columbia, Canada",
+        "Alberta, Canada",
+        "Quebec, Canada"
+      ],
+      "limit": 50,
+      "max_pages": 3,
+      "locale": "en_CA"
+    }
+  ]
+}

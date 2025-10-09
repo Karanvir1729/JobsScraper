@@ -3,6 +3,8 @@ import os
 from typing import Any, Dict, List, Optional
 
 import yaml
+import csv
+import urllib.parse as urlparse
 import scrapy
 from itemadapter import ItemAdapter
 
@@ -31,10 +33,19 @@ class ConfigSpider(scrapy.Spider):
         self._configured_sources: List[str] = []
         self._errors = defaultdict(list)
         self.min_per_source = int(min_per_source) if min_per_source else 0
+        # API-specific stats (e.g., Yelp)
+        self._yelp_stats: Dict[str, Dict[str, Any]] = {}
 
     def start_requests(self):
+        # Load sources from YAML or JSON based on file extension
         with open(self.sources_file, "r", encoding="utf-8") as f:
-            data = yaml.safe_load(f) or {}
+            if str(self.sources_file).lower().endswith((".json",)):
+                try:
+                    data = json.load(f) or {}
+                except Exception:
+                    data = {}
+            else:
+                data = yaml.safe_load(f) or {}
         self.sources = data.get("sources", [])
         self._configured_sources = [s.get("name") for s in self.sources]
         for src in self.sources:
@@ -42,6 +53,55 @@ class ConfigSpider(scrapy.Spider):
                 self.logger.info("Skipping disabled source: %s", src.get("name"))
                 continue
             meta = {"source": src.get("name"), "cfg": src}
+            # Special handling for API-driven sources (e.g., Yelp Fusion API)
+            if str(src.get("api")).lower() == "yelp":
+                api_key = os.environ.get("YELP_API_KEY") or src.get("api_key")
+                if not api_key:
+                    self._errors[src.get("name") or "Yelp API"].append({
+                        "url": None,
+                        "status": None,
+                        "note": "Missing YELP_API_KEY. Set env var or put api_key in source (not recommended).",
+                    })
+                    continue
+                term = src.get("term") or src.get("category") or "home services"
+                locations = src.get("locations") or []
+                limit = int(src.get("limit") or 50)
+                limit = max(1, min(50, limit))
+                max_pages = int(src.get("max_pages") or 1)
+                radius_m = src.get("radius_m")
+                locale = src.get("locale") or "en_CA"
+                base = "https://api.yelp.com/v3/businesses/search"
+                for loc in locations:
+                    params = {"term": term, "location": loc, "limit": limit, "offset": 0, "locale": locale}
+                    if radius_m:
+                        try:
+                            params["radius"] = int(radius_m)
+                        except Exception:
+                            pass
+                    url = base + "?" + urlparse.urlencode(params)
+                    req = scrapy.Request(
+                        url,
+                        callback=self.parse_yelp_api,
+                        errback=self.on_error,
+                        headers={"Authorization": f"Bearer {api_key}"},
+                        dont_filter=True,
+                    )
+                    req.meta.update(meta)
+                    req.meta.update({
+                        "_yelp": {
+                            "term": term,
+                            "location": loc,
+                            "limit": limit,
+                            "offset": 0,
+                            "max_pages": max_pages,
+                            "page": 1,
+                            "api_key": api_key,
+                            "base": base,
+                            "locale": locale,
+                        }
+                    })
+                    yield req
+                continue
             for url in src.get("start_urls", []) or []:
                 yield scrapy.Request(
                     url,
@@ -50,6 +110,148 @@ class ConfigSpider(scrapy.Spider):
                     meta=meta,
                     headers=src.get("headers") or {},
                 )
+
+    def parse_yelp_api(self, response: scrapy.http.Response):
+        cfg = response.meta.get("cfg", {})
+        source_name = response.meta.get("source")
+        try:
+            data = json.loads(response.text)
+        except Exception as e:
+            self._errors[source_name].append({
+                "url": response.url,
+                "status": int(response.status) if response.status else None,
+                "note": f"Failed to parse Yelp API JSON: {e}",
+            })
+            st = self._yelp_stats.setdefault(source_name, {"api_requests": 0, "businesses": 0, "per_location": {}, "reported_totals": {}, "errors": 0})
+            st["errors"] = int(st.get("errors", 0)) + 1
+            return
+
+        if data.get("error"):
+            self._errors[source_name].append({
+                "url": response.url,
+                "status": int(response.status) if response.status else None,
+                "note": f"Yelp API error: {data.get('error')}",
+            })
+            return
+        # Update API stats
+        y = (response.meta.get("_yelp") or {})
+        loc = y.get("location")
+        st = self._yelp_stats.setdefault(source_name, {"api_requests": 0, "businesses": 0, "per_location": {}, "reported_totals": {}, "errors": 0})
+        st["api_requests"] = int(st.get("api_requests", 0)) + 1
+        if isinstance(loc, str) and data.get("total") is not None:
+            st.setdefault("reported_totals", {})[loc] = int(data.get("total") or 0)
+
+        businesses = data.get("businesses", [])
+        st["businesses"] = int(st.get("businesses", 0)) + len(businesses)
+        if isinstance(loc, str):
+            per = st.setdefault("per_location", {})
+            per[loc] = int(per.get(loc, 0)) + len(businesses)
+        produced = 0
+        for biz in businesses:
+            item = ProviderItem()
+            item["source"] = source_name
+            item["category"] = cfg.get("category")
+            item["region"] = cfg.get("region") or (response.meta.get("_yelp") or {}).get("location")
+            item["listing_url"] = response.url
+            item["detail_url"] = biz.get("url")
+            item["business_name"] = biz.get("name")
+            phone = biz.get("display_phone") or biz.get("phone")
+            item["phone"] = U.normalize_phone(phone) if phone else None
+            loc = biz.get("location") or {}
+            if isinstance(loc, dict):
+                disp_addr = loc.get("display_address")
+                if isinstance(disp_addr, list):
+                    item["address"] = ", ".join([a for a in disp_addr if isinstance(a, str)])
+                else:
+                    item["address"] = loc.get("address1")
+                item["city"] = loc.get("city")
+                item["province"] = (loc.get("state") or loc.get("country"))
+                item["postal_code"] = loc.get("zip_code")
+
+            # Optionally fetch Yelp business HTML to discover external website, then visit it for email
+            if cfg.get("visit_website_for_email") and item.get("detail_url"):
+                req = scrapy.Request(
+                    item["detail_url"],
+                    callback=self.parse_yelp_business_page,
+                    errback=self.on_error,
+                    headers=cfg.get("headers") or {},
+                )
+                req.meta["item"] = item
+                req.meta["cfg"] = cfg
+                produced += 1
+                yield req
+            else:
+                self._counts[source_name] += 1
+                produced += 1
+                yield item
+
+        # Yelp API pagination via offset
+        y = (response.meta.get("_yelp") or {}).copy()
+        limit = int(y.get("limit") or 50)
+        page = int(y.get("page") or 1)
+        max_pages = int(y.get("max_pages") or 1)
+        total = int(data.get("total") or 0)
+        next_offset = int(y.get("offset") or 0) + limit
+        if produced > 0 and page < max_pages and next_offset < total:
+            params = {
+                "term": y.get("term"),
+                "location": y.get("location"),
+                "limit": limit,
+                "offset": next_offset,
+                "locale": y.get("locale") or "en_CA",
+            }
+            if cfg.get("radius_m"):
+                try:
+                    params["radius"] = int(cfg.get("radius_m"))
+                except Exception:
+                    pass
+            url = (y.get("base") or "https://api.yelp.com/v3/businesses/search") + "?" + urlparse.urlencode(params)
+            req = scrapy.Request(
+                url,
+                callback=self.parse_yelp_api,
+                errback=self.on_error,
+                headers={"Authorization": f"Bearer {y.get('api_key')}"},
+                dont_filter=True,
+            )
+            y.update({"offset": next_offset, "page": page + 1})
+            req.meta.update({"cfg": cfg, "source": source_name, "_yelp": y})
+            yield req
+
+    def parse_yelp_business_page(self, response: scrapy.http.Response):
+        item: ProviderItem = response.meta.get("item")
+        cfg = response.meta.get("cfg", {})
+        source_name = item.get("source") if item else None
+        # Try to extract external website URL from Yelp business page via biz_redir param
+        hrefs = response.css("a[href*='/biz_redir?']::attr(href)").getall()
+        website_url = None
+        for href in hrefs:
+            try:
+                parsed = urlparse.urlparse(href)
+                qs = urlparse.parse_qs(parsed.query)
+                u = qs.get("url")
+                if u and isinstance(u, list) and u[0].startswith("http"):
+                    website_url = u[0]
+                    break
+            except Exception:
+                continue
+        if website_url:
+            item["website"] = website_url
+        # If we have a website and want email, use existing website parsing flow
+        if (not item.get("email")) and item.get("website") and cfg.get("visit_website_for_email"):
+            wreq = scrapy.Request(
+                item["website"],
+                callback=self.parse_website_email,
+                errback=self.on_error,
+                headers=cfg.get("website_headers") or cfg.get("headers") or {},
+            )
+            wreq.meta["item"] = item
+            wreq.meta["cfg"] = cfg
+            yield wreq
+            return
+        # Else, yield the item as-is
+        if source_name:
+            self._counts[source_name] += 1
+        yield item
 
     def parse_listing(self, response: scrapy.http.Response):
         cfg = response.meta.get("cfg", {})
@@ -324,14 +526,64 @@ class ConfigSpider(scrapy.Spider):
         if not self.summary_file:
             return
         try:
+            # Prepare Yelp stats in a JSON-serializable form
+            yelp_api = None
+            if self._yelp_stats:
+                yelp_api = {}
+                for k, v in self._yelp_stats.items():
+                    yelp_api[k] = {
+                        "api_requests": int(v.get("api_requests", 0)),
+                        "businesses": int(v.get("businesses", 0)),
+                        "errors": int(v.get("errors", 0)),
+                        "per_location": {lk: int(lc) for lk, lc in (v.get("per_location", {}) or {}).items()},
+                        "reported_totals": {lk: int(lc) for lk, lc in (v.get("reported_totals", {}) or {}).items()},
+                    }
+
             data = {
                 "reason": reason,
                 "counts": dict(self._counts),
                 "configured_sources": self._configured_sources,
             }
+            if yelp_api is not None:
+                data["yelp_api"] = yelp_api
             import json
             with open(self.summary_file, "w", encoding="utf-8") as f:
                 json.dump(data, f, ensure_ascii=False, indent=2)
+            # Also write Yelp API CSV exports alongside the summary file
+            if yelp_api is not None and isinstance(yelp_api, dict):
+                try:
+                    base = str(self.summary_file)
+                    suffix = "-summary.json"
+                    if base.endswith(suffix):
+                        prefix = base[: -len(suffix)]
+                    else:
+                        prefix = os.path.splitext(base)[0]
+                    ov_path = prefix + "-yelp_api_overview.csv"
+                    loc_path = prefix + "-yelp_api_locations.csv"
+                    # Overview CSV
+                    with open(ov_path, "w", encoding="utf-8", newline="") as cf:
+                        w = csv.writer(cf)
+                        w.writerow(["source", "api_requests", "businesses", "errors", "locations"])
+                        for src, s in (yelp_api or {}).items():
+                            per = (s.get("per_location") or {}) if isinstance(s, dict) else {}
+                            w.writerow([
+                                src,
+                                int((s or {}).get("api_requests", 0)),
+                                int((s or {}).get("businesses", 0)),
+                                int((s or {}).get("errors", 0)),
+                                len(per),
+                            ])
+                    # Per-location CSV
+                    with open(loc_path, "w", encoding="utf-8", newline="") as cf:
+                        w = csv.writer(cf)
+                        w.writerow(["source", "location", "returned", "reported_total"])
+                        for src, s in (yelp_api or {}).items():
+                            per = (s.get("per_location") or {}) if isinstance(s, dict) else {}
+                            rep = (s.get("reported_totals") or {}) if isinstance(s, dict) else {}
+                            for k in per.keys():
+                                w.writerow([src, k, int(per.get(k, 0)), int(rep.get(k, 0))])
+                except Exception as e:
+                    self.logger.error("Failed writing Yelp API CSV exports: %s", e)
         except Exception as e:
             self.logger.error("Failed writing summary file %s: %s", self.summary_file, e)
         # Write errors file if requested
