@@ -1,0 +1,16 @@
+{
+  "Opendi - Plumbing": [
+    {
+      "url": "https://www.opendi.ca/search/Plumbing.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - HVAC": [
+    {
+      "url": "https://www.opendi.ca/search/HVAC.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ]
+}

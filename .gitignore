@@ -35,9 +35,6 @@ build/
 dist/
 *.egg-info/
 
-# Project output
-output/
-
 # Logs & temp
 *.log
 *.tmp

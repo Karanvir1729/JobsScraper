@@ -1,0 +1,3154 @@
+{
+  "sources": [
+    {
+      "name": "411.ca - Plumbing",
+      "category": "Plumbing",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Plumbing&st=on",
+        "https://411.ca/business/search?q=Plumbing&st=bc",
+        "https://411.ca/business/search?q=Plumbing&st=ab",
+        "https://411.ca/business/search?q=Plumbing&st=qc",
+        "https://411.ca/business/search?q=Plumbing&st=mb",
+        "https://411.ca/business/search?q=Plumbing&st=sk",
+        "https://411.ca/business/search?q=Plumbing&st=ns",
+        "https://411.ca/business/search?q=Plumbing&st=nb",
+        "https://411.ca/business/search?q=Plumbing&st=nl",
+        "https://411.ca/business/search?q=Plumbing&st=pe",
+        "https://411.ca/business/search?q=Plumbing&st=nt",
+        "https://411.ca/business/search?q=Plumbing&st=nu",
+        "https://411.ca/business/search?q=Plumbing&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - HVAC",
+      "category": "HVAC",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=HVAC&st=on",
+        "https://411.ca/business/search?q=HVAC&st=bc",
+        "https://411.ca/business/search?q=HVAC&st=ab",
+        "https://411.ca/business/search?q=HVAC&st=qc",
+        "https://411.ca/business/search?q=HVAC&st=mb",
+        "https://411.ca/business/search?q=HVAC&st=sk",
+        "https://411.ca/business/search?q=HVAC&st=ns",
+        "https://411.ca/business/search?q=HVAC&st=nb",
+        "https://411.ca/business/search?q=HVAC&st=nl",
+        "https://411.ca/business/search?q=HVAC&st=pe",
+        "https://411.ca/business/search?q=HVAC&st=nt",
+        "https://411.ca/business/search?q=HVAC&st=nu",
+        "https://411.ca/business/search?q=HVAC&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Electrician",
+      "category": "Electrician",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Electrician&st=on",
+        "https://411.ca/business/search?q=Electrician&st=bc",
+        "https://411.ca/business/search?q=Electrician&st=ab",
+        "https://411.ca/business/search?q=Electrician&st=qc",
+        "https://411.ca/business/search?q=Electrician&st=mb",
+        "https://411.ca/business/search?q=Electrician&st=sk",
+        "https://411.ca/business/search?q=Electrician&st=ns",
+        "https://411.ca/business/search?q=Electrician&st=nb",
+        "https://411.ca/business/search?q=Electrician&st=nl",
+        "https://411.ca/business/search?q=Electrician&st=pe",
+        "https://411.ca/business/search?q=Electrician&st=nt",
+        "https://411.ca/business/search?q=Electrician&st=nu",
+        "https://411.ca/business/search?q=Electrician&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Roofing",
+      "category": "Roofing",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Roofing&st=on",
+        "https://411.ca/business/search?q=Roofing&st=bc",
+        "https://411.ca/business/search?q=Roofing&st=ab",
+        "https://411.ca/business/search?q=Roofing&st=qc",
+        "https://411.ca/business/search?q=Roofing&st=mb",
+        "https://411.ca/business/search?q=Roofing&st=sk",
+        "https://411.ca/business/search?q=Roofing&st=ns",
+        "https://411.ca/business/search?q=Roofing&st=nb",
+        "https://411.ca/business/search?q=Roofing&st=nl",
+        "https://411.ca/business/search?q=Roofing&st=pe",
+        "https://411.ca/business/search?q=Roofing&st=nt",
+        "https://411.ca/business/search?q=Roofing&st=nu",
+        "https://411.ca/business/search?q=Roofing&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Landscaping",
+      "category": "Landscaping",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Landscaping&st=on",
+        "https://411.ca/business/search?q=Landscaping&st=bc",
+        "https://411.ca/business/search?q=Landscaping&st=ab",
+        "https://411.ca/business/search?q=Landscaping&st=qc",
+        "https://411.ca/business/search?q=Landscaping&st=mb",
+        "https://411.ca/business/search?q=Landscaping&st=sk",
+        "https://411.ca/business/search?q=Landscaping&st=ns",
+        "https://411.ca/business/search?q=Landscaping&st=nb",
+        "https://411.ca/business/search?q=Landscaping&st=nl",
+        "https://411.ca/business/search?q=Landscaping&st=pe",
+        "https://411.ca/business/search?q=Landscaping&st=nt",
+        "https://411.ca/business/search?q=Landscaping&st=nu",
+        "https://411.ca/business/search?q=Landscaping&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Handyman",
+      "category": "Handyman",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Handyman&st=on",
+        "https://411.ca/business/search?q=Handyman&st=bc",
+        "https://411.ca/business/search?q=Handyman&st=ab",
+        "https://411.ca/business/search?q=Handyman&st=qc",
+        "https://411.ca/business/search?q=Handyman&st=mb",
+        "https://411.ca/business/search?q=Handyman&st=sk",
+        "https://411.ca/business/search?q=Handyman&st=ns",
+        "https://411.ca/business/search?q=Handyman&st=nb",
+        "https://411.ca/business/search?q=Handyman&st=nl",
+        "https://411.ca/business/search?q=Handyman&st=pe",
+        "https://411.ca/business/search?q=Handyman&st=nt",
+        "https://411.ca/business/search?q=Handyman&st=nu",
+        "https://411.ca/business/search?q=Handyman&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Painting",
+      "category": "Painting",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Painting&st=on",
+        "https://411.ca/business/search?q=Painting&st=bc",
+        "https://411.ca/business/search?q=Painting&st=ab",
+        "https://411.ca/business/search?q=Painting&st=qc",
+        "https://411.ca/business/search?q=Painting&st=mb",
+        "https://411.ca/business/search?q=Painting&st=sk",
+        "https://411.ca/business/search?q=Painting&st=ns",
+        "https://411.ca/business/search?q=Painting&st=nb",
+        "https://411.ca/business/search?q=Painting&st=nl",
+        "https://411.ca/business/search?q=Painting&st=pe",
+        "https://411.ca/business/search?q=Painting&st=nt",
+        "https://411.ca/business/search?q=Painting&st=nu",
+        "https://411.ca/business/search?q=Painting&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Carpet Cleaning",
+      "category": "Carpet Cleaning",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Carpet%20Cleaning&st=on",
+        "https://411.ca/business/search?q=Carpet%20Cleaning&st=bc",
+        "https://411.ca/business/search?q=Carpet%20Cleaning&st=ab",
+        "https://411.ca/business/search?q=Carpet%20Cleaning&st=qc",
+        "https://411.ca/business/search?q=Carpet%20Cleaning&st=mb",
+        "https://411.ca/business/search?q=Carpet%20Cleaning&st=sk",
+        "https://411.ca/business/search?q=Carpet%20Cleaning&st=ns",
+        "https://411.ca/business/search?q=Carpet%20Cleaning&st=nb",
+        "https://411.ca/business/search?q=Carpet%20Cleaning&st=nl",
+        "https://411.ca/business/search?q=Carpet%20Cleaning&st=pe",
+        "https://411.ca/business/search?q=Carpet%20Cleaning&st=nt",
+        "https://411.ca/business/search?q=Carpet%20Cleaning&st=nu",
+        "https://411.ca/business/search?q=Carpet%20Cleaning&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Gutter Cleaning",
+      "category": "Gutter Cleaning",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Gutter%20Cleaning&st=on",
+        "https://411.ca/business/search?q=Gutter%20Cleaning&st=bc",
+        "https://411.ca/business/search?q=Gutter%20Cleaning&st=ab",
+        "https://411.ca/business/search?q=Gutter%20Cleaning&st=qc",
+        "https://411.ca/business/search?q=Gutter%20Cleaning&st=mb",
+        "https://411.ca/business/search?q=Gutter%20Cleaning&st=sk",
+        "https://411.ca/business/search?q=Gutter%20Cleaning&st=ns",
+        "https://411.ca/business/search?q=Gutter%20Cleaning&st=nb",
+        "https://411.ca/business/search?q=Gutter%20Cleaning&st=nl",
+        "https://411.ca/business/search?q=Gutter%20Cleaning&st=pe",
+        "https://411.ca/business/search?q=Gutter%20Cleaning&st=nt",
+        "https://411.ca/business/search?q=Gutter%20Cleaning&st=nu",
+        "https://411.ca/business/search?q=Gutter%20Cleaning&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Pest Control",
+      "category": "Pest Control",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Pest%20Control&st=on",
+        "https://411.ca/business/search?q=Pest%20Control&st=bc",
+        "https://411.ca/business/search?q=Pest%20Control&st=ab",
+        "https://411.ca/business/search?q=Pest%20Control&st=qc",
+        "https://411.ca/business/search?q=Pest%20Control&st=mb",
+        "https://411.ca/business/search?q=Pest%20Control&st=sk",
+        "https://411.ca/business/search?q=Pest%20Control&st=ns",
+        "https://411.ca/business/search?q=Pest%20Control&st=nb",
+        "https://411.ca/business/search?q=Pest%20Control&st=nl",
+        "https://411.ca/business/search?q=Pest%20Control&st=pe",
+        "https://411.ca/business/search?q=Pest%20Control&st=nt",
+        "https://411.ca/business/search?q=Pest%20Control&st=nu",
+        "https://411.ca/business/search?q=Pest%20Control&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Appliance Repair",
+      "category": "Appliance Repair",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Appliance%20Repair&st=on",
+        "https://411.ca/business/search?q=Appliance%20Repair&st=bc",
+        "https://411.ca/business/search?q=Appliance%20Repair&st=ab",
+        "https://411.ca/business/search?q=Appliance%20Repair&st=qc",
+        "https://411.ca/business/search?q=Appliance%20Repair&st=mb",
+        "https://411.ca/business/search?q=Appliance%20Repair&st=sk",
+        "https://411.ca/business/search?q=Appliance%20Repair&st=ns",
+        "https://411.ca/business/search?q=Appliance%20Repair&st=nb",
+        "https://411.ca/business/search?q=Appliance%20Repair&st=nl",
+        "https://411.ca/business/search?q=Appliance%20Repair&st=pe",
+        "https://411.ca/business/search?q=Appliance%20Repair&st=nt",
+        "https://411.ca/business/search?q=Appliance%20Repair&st=nu",
+        "https://411.ca/business/search?q=Appliance%20Repair&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Moving",
+      "category": "Moving",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Moving&st=on",
+        "https://411.ca/business/search?q=Moving&st=bc",
+        "https://411.ca/business/search?q=Moving&st=ab",
+        "https://411.ca/business/search?q=Moving&st=qc",
+        "https://411.ca/business/search?q=Moving&st=mb",
+        "https://411.ca/business/search?q=Moving&st=sk",
+        "https://411.ca/business/search?q=Moving&st=ns",
+        "https://411.ca/business/search?q=Moving&st=nb",
+        "https://411.ca/business/search?q=Moving&st=nl",
+        "https://411.ca/business/search?q=Moving&st=pe",
+        "https://411.ca/business/search?q=Moving&st=nt",
+        "https://411.ca/business/search?q=Moving&st=nu",
+        "https://411.ca/business/search?q=Moving&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Junk Removal",
+      "category": "Junk Removal",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Junk%20Removal&st=on",
+        "https://411.ca/business/search?q=Junk%20Removal&st=bc",
+        "https://411.ca/business/search?q=Junk%20Removal&st=ab",
+        "https://411.ca/business/search?q=Junk%20Removal&st=qc",
+        "https://411.ca/business/search?q=Junk%20Removal&st=mb",
+        "https://411.ca/business/search?q=Junk%20Removal&st=sk",
+        "https://411.ca/business/search?q=Junk%20Removal&st=ns",
+        "https://411.ca/business/search?q=Junk%20Removal&st=nb",
+        "https://411.ca/business/search?q=Junk%20Removal&st=nl",
+        "https://411.ca/business/search?q=Junk%20Removal&st=pe",
+        "https://411.ca/business/search?q=Junk%20Removal&st=nt",
+        "https://411.ca/business/search?q=Junk%20Removal&st=nu",
+        "https://411.ca/business/search?q=Junk%20Removal&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Locksmith",
+      "category": "Locksmith",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Locksmith&st=on",
+        "https://411.ca/business/search?q=Locksmith&st=bc",
+        "https://411.ca/business/search?q=Locksmith&st=ab",
+        "https://411.ca/business/search?q=Locksmith&st=qc",
+        "https://411.ca/business/search?q=Locksmith&st=mb",
+        "https://411.ca/business/search?q=Locksmith&st=sk",
+        "https://411.ca/business/search?q=Locksmith&st=ns",
+        "https://411.ca/business/search?q=Locksmith&st=nb",
+        "https://411.ca/business/search?q=Locksmith&st=nl",
+        "https://411.ca/business/search?q=Locksmith&st=pe",
+        "https://411.ca/business/search?q=Locksmith&st=nt",
+        "https://411.ca/business/search?q=Locksmith&st=nu",
+        "https://411.ca/business/search?q=Locksmith&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Security Systems",
+      "category": "Security Systems",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Security%20Systems&st=on",
+        "https://411.ca/business/search?q=Security%20Systems&st=bc",
+        "https://411.ca/business/search?q=Security%20Systems&st=ab",
+        "https://411.ca/business/search?q=Security%20Systems&st=qc",
+        "https://411.ca/business/search?q=Security%20Systems&st=mb",
+        "https://411.ca/business/search?q=Security%20Systems&st=sk",
+        "https://411.ca/business/search?q=Security%20Systems&st=ns",
+        "https://411.ca/business/search?q=Security%20Systems&st=nb",
+        "https://411.ca/business/search?q=Security%20Systems&st=nl",
+        "https://411.ca/business/search?q=Security%20Systems&st=pe",
+        "https://411.ca/business/search?q=Security%20Systems&st=nt",
+        "https://411.ca/business/search?q=Security%20Systems&st=nu",
+        "https://411.ca/business/search?q=Security%20Systems&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Siding",
+      "category": "Siding",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Siding&st=on",
+        "https://411.ca/business/search?q=Siding&st=bc",
+        "https://411.ca/business/search?q=Siding&st=ab",
+        "https://411.ca/business/search?q=Siding&st=qc",
+        "https://411.ca/business/search?q=Siding&st=mb",
+        "https://411.ca/business/search?q=Siding&st=sk",
+        "https://411.ca/business/search?q=Siding&st=ns",
+        "https://411.ca/business/search?q=Siding&st=nb",
+        "https://411.ca/business/search?q=Siding&st=nl",
+        "https://411.ca/business/search?q=Siding&st=pe",
+        "https://411.ca/business/search?q=Siding&st=nt",
+        "https://411.ca/business/search?q=Siding&st=nu",
+        "https://411.ca/business/search?q=Siding&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Concrete",
+      "category": "Concrete",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Concrete&st=on",
+        "https://411.ca/business/search?q=Concrete&st=bc",
+        "https://411.ca/business/search?q=Concrete&st=ab",
+        "https://411.ca/business/search?q=Concrete&st=qc",
+        "https://411.ca/business/search?q=Concrete&st=mb",
+        "https://411.ca/business/search?q=Concrete&st=sk",
+        "https://411.ca/business/search?q=Concrete&st=ns",
+        "https://411.ca/business/search?q=Concrete&st=nb",
+        "https://411.ca/business/search?q=Concrete&st=nl",
+        "https://411.ca/business/search?q=Concrete&st=pe",
+        "https://411.ca/business/search?q=Concrete&st=nt",
+        "https://411.ca/business/search?q=Concrete&st=nu",
+        "https://411.ca/business/search?q=Concrete&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Tree Service",
+      "category": "Tree Service",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Tree%20Service&st=on",
+        "https://411.ca/business/search?q=Tree%20Service&st=bc",
+        "https://411.ca/business/search?q=Tree%20Service&st=ab",
+        "https://411.ca/business/search?q=Tree%20Service&st=qc",
+        "https://411.ca/business/search?q=Tree%20Service&st=mb",
+        "https://411.ca/business/search?q=Tree%20Service&st=sk",
+        "https://411.ca/business/search?q=Tree%20Service&st=ns",
+        "https://411.ca/business/search?q=Tree%20Service&st=nb",
+        "https://411.ca/business/search?q=Tree%20Service&st=nl",
+        "https://411.ca/business/search?q=Tree%20Service&st=pe",
+        "https://411.ca/business/search?q=Tree%20Service&st=nt",
+        "https://411.ca/business/search?q=Tree%20Service&st=nu",
+        "https://411.ca/business/search?q=Tree%20Service&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Snow Removal",
+      "category": "Snow Removal",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Snow%20Removal&st=on",
+        "https://411.ca/business/search?q=Snow%20Removal&st=bc",
+        "https://411.ca/business/search?q=Snow%20Removal&st=ab",
+        "https://411.ca/business/search?q=Snow%20Removal&st=qc",
+        "https://411.ca/business/search?q=Snow%20Removal&st=mb",
+        "https://411.ca/business/search?q=Snow%20Removal&st=sk",
+        "https://411.ca/business/search?q=Snow%20Removal&st=ns",
+        "https://411.ca/business/search?q=Snow%20Removal&st=nb",
+        "https://411.ca/business/search?q=Snow%20Removal&st=nl",
+        "https://411.ca/business/search?q=Snow%20Removal&st=pe",
+        "https://411.ca/business/search?q=Snow%20Removal&st=nt",
+        "https://411.ca/business/search?q=Snow%20Removal&st=nu",
+        "https://411.ca/business/search?q=Snow%20Removal&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Duct Cleaning",
+      "category": "Duct Cleaning",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Duct%20Cleaning&st=on",
+        "https://411.ca/business/search?q=Duct%20Cleaning&st=bc",
+        "https://411.ca/business/search?q=Duct%20Cleaning&st=ab",
+        "https://411.ca/business/search?q=Duct%20Cleaning&st=qc",
+        "https://411.ca/business/search?q=Duct%20Cleaning&st=mb",
+        "https://411.ca/business/search?q=Duct%20Cleaning&st=sk",
+        "https://411.ca/business/search?q=Duct%20Cleaning&st=ns",
+        "https://411.ca/business/search?q=Duct%20Cleaning&st=nb",
+        "https://411.ca/business/search?q=Duct%20Cleaning&st=nl",
+        "https://411.ca/business/search?q=Duct%20Cleaning&st=pe",
+        "https://411.ca/business/search?q=Duct%20Cleaning&st=nt",
+        "https://411.ca/business/search?q=Duct%20Cleaning&st=nu",
+        "https://411.ca/business/search?q=Duct%20Cleaning&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Insulation",
+      "category": "Insulation",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Insulation&st=on",
+        "https://411.ca/business/search?q=Insulation&st=bc",
+        "https://411.ca/business/search?q=Insulation&st=ab",
+        "https://411.ca/business/search?q=Insulation&st=qc",
+        "https://411.ca/business/search?q=Insulation&st=mb",
+        "https://411.ca/business/search?q=Insulation&st=sk",
+        "https://411.ca/business/search?q=Insulation&st=ns",
+        "https://411.ca/business/search?q=Insulation&st=nb",
+        "https://411.ca/business/search?q=Insulation&st=nl",
+        "https://411.ca/business/search?q=Insulation&st=pe",
+        "https://411.ca/business/search?q=Insulation&st=nt",
+        "https://411.ca/business/search?q=Insulation&st=nu",
+        "https://411.ca/business/search?q=Insulation&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Mold Remediation",
+      "category": "Mold Remediation",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Mold%20Remediation&st=on",
+        "https://411.ca/business/search?q=Mold%20Remediation&st=bc",
+        "https://411.ca/business/search?q=Mold%20Remediation&st=ab",
+        "https://411.ca/business/search?q=Mold%20Remediation&st=qc",
+        "https://411.ca/business/search?q=Mold%20Remediation&st=mb",
+        "https://411.ca/business/search?q=Mold%20Remediation&st=sk",
+        "https://411.ca/business/search?q=Mold%20Remediation&st=ns",
+        "https://411.ca/business/search?q=Mold%20Remediation&st=nb",
+        "https://411.ca/business/search?q=Mold%20Remediation&st=nl",
+        "https://411.ca/business/search?q=Mold%20Remediation&st=pe",
+        "https://411.ca/business/search?q=Mold%20Remediation&st=nt",
+        "https://411.ca/business/search?q=Mold%20Remediation&st=nu",
+        "https://411.ca/business/search?q=Mold%20Remediation&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Water Damage Restoration",
+      "category": "Water Damage Restoration",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Water%20Damage%20Restoration&st=on",
+        "https://411.ca/business/search?q=Water%20Damage%20Restoration&st=bc",
+        "https://411.ca/business/search?q=Water%20Damage%20Restoration&st=ab",
+        "https://411.ca/business/search?q=Water%20Damage%20Restoration&st=qc",
+        "https://411.ca/business/search?q=Water%20Damage%20Restoration&st=mb",
+        "https://411.ca/business/search?q=Water%20Damage%20Restoration&st=sk",
+        "https://411.ca/business/search?q=Water%20Damage%20Restoration&st=ns",
+        "https://411.ca/business/search?q=Water%20Damage%20Restoration&st=nb",
+        "https://411.ca/business/search?q=Water%20Damage%20Restoration&st=nl",
+        "https://411.ca/business/search?q=Water%20Damage%20Restoration&st=pe",
+        "https://411.ca/business/search?q=Water%20Damage%20Restoration&st=nt",
+        "https://411.ca/business/search?q=Water%20Damage%20Restoration&st=nu",
+        "https://411.ca/business/search?q=Water%20Damage%20Restoration&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Window Installation",
+      "category": "Window Installation",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Window%20Installation&st=on",
+        "https://411.ca/business/search?q=Window%20Installation&st=bc",
+        "https://411.ca/business/search?q=Window%20Installation&st=ab",
+        "https://411.ca/business/search?q=Window%20Installation&st=qc",
+        "https://411.ca/business/search?q=Window%20Installation&st=mb",
+        "https://411.ca/business/search?q=Window%20Installation&st=sk",
+        "https://411.ca/business/search?q=Window%20Installation&st=ns",
+        "https://411.ca/business/search?q=Window%20Installation&st=nb",
+        "https://411.ca/business/search?q=Window%20Installation&st=nl",
+        "https://411.ca/business/search?q=Window%20Installation&st=pe",
+        "https://411.ca/business/search?q=Window%20Installation&st=nt",
+        "https://411.ca/business/search?q=Window%20Installation&st=nu",
+        "https://411.ca/business/search?q=Window%20Installation&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Door Installation",
+      "category": "Door Installation",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Door%20Installation&st=on",
+        "https://411.ca/business/search?q=Door%20Installation&st=bc",
+        "https://411.ca/business/search?q=Door%20Installation&st=ab",
+        "https://411.ca/business/search?q=Door%20Installation&st=qc",
+        "https://411.ca/business/search?q=Door%20Installation&st=mb",
+        "https://411.ca/business/search?q=Door%20Installation&st=sk",
+        "https://411.ca/business/search?q=Door%20Installation&st=ns",
+        "https://411.ca/business/search?q=Door%20Installation&st=nb",
+        "https://411.ca/business/search?q=Door%20Installation&st=nl",
+        "https://411.ca/business/search?q=Door%20Installation&st=pe",
+        "https://411.ca/business/search?q=Door%20Installation&st=nt",
+        "https://411.ca/business/search?q=Door%20Installation&st=nu",
+        "https://411.ca/business/search?q=Door%20Installation&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Drywall",
+      "category": "Drywall",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Drywall&st=on",
+        "https://411.ca/business/search?q=Drywall&st=bc",
+        "https://411.ca/business/search?q=Drywall&st=ab",
+        "https://411.ca/business/search?q=Drywall&st=qc",
+        "https://411.ca/business/search?q=Drywall&st=mb",
+        "https://411.ca/business/search?q=Drywall&st=sk",
+        "https://411.ca/business/search?q=Drywall&st=ns",
+        "https://411.ca/business/search?q=Drywall&st=nb",
+        "https://411.ca/business/search?q=Drywall&st=nl",
+        "https://411.ca/business/search?q=Drywall&st=pe",
+        "https://411.ca/business/search?q=Drywall&st=nt",
+        "https://411.ca/business/search?q=Drywall&st=nu",
+        "https://411.ca/business/search?q=Drywall&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Demolition",
+      "category": "Demolition",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Demolition&st=on",
+        "https://411.ca/business/search?q=Demolition&st=bc",
+        "https://411.ca/business/search?q=Demolition&st=ab",
+        "https://411.ca/business/search?q=Demolition&st=qc",
+        "https://411.ca/business/search?q=Demolition&st=mb",
+        "https://411.ca/business/search?q=Demolition&st=sk",
+        "https://411.ca/business/search?q=Demolition&st=ns",
+        "https://411.ca/business/search?q=Demolition&st=nb",
+        "https://411.ca/business/search?q=Demolition&st=nl",
+        "https://411.ca/business/search?q=Demolition&st=pe",
+        "https://411.ca/business/search?q=Demolition&st=nt",
+        "https://411.ca/business/search?q=Demolition&st=nu",
+        "https://411.ca/business/search?q=Demolition&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Fence Repair",
+      "category": "Fence Repair",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Fence%20Repair&st=on",
+        "https://411.ca/business/search?q=Fence%20Repair&st=bc",
+        "https://411.ca/business/search?q=Fence%20Repair&st=ab",
+        "https://411.ca/business/search?q=Fence%20Repair&st=qc",
+        "https://411.ca/business/search?q=Fence%20Repair&st=mb",
+        "https://411.ca/business/search?q=Fence%20Repair&st=sk",
+        "https://411.ca/business/search?q=Fence%20Repair&st=ns",
+        "https://411.ca/business/search?q=Fence%20Repair&st=nb",
+        "https://411.ca/business/search?q=Fence%20Repair&st=nl",
+        "https://411.ca/business/search?q=Fence%20Repair&st=pe",
+        "https://411.ca/business/search?q=Fence%20Repair&st=nt",
+        "https://411.ca/business/search?q=Fence%20Repair&st=nu",
+        "https://411.ca/business/search?q=Fence%20Repair&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Deck Builder",
+      "category": "Deck Builder",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Deck%20Builder&st=on",
+        "https://411.ca/business/search?q=Deck%20Builder&st=bc",
+        "https://411.ca/business/search?q=Deck%20Builder&st=ab",
+        "https://411.ca/business/search?q=Deck%20Builder&st=qc",
+        "https://411.ca/business/search?q=Deck%20Builder&st=mb",
+        "https://411.ca/business/search?q=Deck%20Builder&st=sk",
+        "https://411.ca/business/search?q=Deck%20Builder&st=ns",
+        "https://411.ca/business/search?q=Deck%20Builder&st=nb",
+        "https://411.ca/business/search?q=Deck%20Builder&st=nl",
+        "https://411.ca/business/search?q=Deck%20Builder&st=pe",
+        "https://411.ca/business/search?q=Deck%20Builder&st=nt",
+        "https://411.ca/business/search?q=Deck%20Builder&st=nu",
+        "https://411.ca/business/search?q=Deck%20Builder&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "411.ca - Garage Door",
+      "category": "Garage Door",
+      "region": "ON, BC, AB, QC, MB, SK, NS, NB, NL, PE, NT, NU, YT",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://411.ca/"
+      },
+      "start_urls": [
+        "https://411.ca/business/search?q=Garage%20Door&st=on",
+        "https://411.ca/business/search?q=Garage%20Door&st=bc",
+        "https://411.ca/business/search?q=Garage%20Door&st=ab",
+        "https://411.ca/business/search?q=Garage%20Door&st=qc",
+        "https://411.ca/business/search?q=Garage%20Door&st=mb",
+        "https://411.ca/business/search?q=Garage%20Door&st=sk",
+        "https://411.ca/business/search?q=Garage%20Door&st=ns",
+        "https://411.ca/business/search?q=Garage%20Door&st=nb",
+        "https://411.ca/business/search?q=Garage%20Door&st=nl",
+        "https://411.ca/business/search?q=Garage%20Door&st=pe",
+        "https://411.ca/business/search?q=Garage%20Door&st=nt",
+        "https://411.ca/business/search?q=Garage%20Door&st=nu",
+        "https://411.ca/business/search?q=Garage%20Door&st=yt"
+      ],
+      "listing": {
+        "item_selector": [
+          "div.listing",
+          "div.result",
+          "article.listing",
+          "li",
+          "article",
+          "div[class*='result']"
+        ],
+        "fields": {
+          "business_name": [
+            "h2 a::text",
+            "a.business-name::text",
+            "h3 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)",
+            "a.website::attr(href)"
+          ],
+          "address": [
+            "div.address::text",
+            "address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h2 a",
+          "a.business-name",
+          "h3 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/business/profile/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']",
+          "a.pagination__next",
+          ".pagination a[rel='next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    }
+  ]
+}

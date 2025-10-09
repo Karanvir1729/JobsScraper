@@ -1,0 +1,137 @@
+{
+  "Opendi - Plumbing": [
+    {
+      "url": "https://www.opendi.ca/search/Plumbing.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Hotfrog - Plumbing": [
+    {
+      "url": "https://www.linkedin.com/company/locafy/",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.facebook.com/HotfrogCA",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.hotfrog.ca/login",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.hotfrog.ca/add",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    }
+  ],
+  "411.ca - Plumbing": [
+    {
+      "url": "https://www.instagram.com/411dotca/",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://twitter.com/411dotca",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.linkedin.com/company/411dotca",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.facebook.com/411dotca/",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    }
+  ],
+  "Opendi - HVAC": [
+    {
+      "url": "https://www.opendi.ca/search/HVAC.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Roofing": [
+    {
+      "url": "https://www.opendi.ca/search/Roofing.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Lawn Care": [
+    {
+      "url": "https://www.opendi.ca/search/Lawn+Care.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Electrician": [
+    {
+      "url": "https://www.opendi.ca/search/Electrician.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Pest Control": [
+    {
+      "url": "https://www.opendi.ca/search/Pest+Control.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Appliance Repair": [
+    {
+      "url": "https://www.opendi.ca/search/Appliance+Repair.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Moving": [
+    {
+      "url": "https://www.opendi.ca/search/Moving.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "411.ca - Junk Removal": [
+    {
+      "url": "https://www.junk-king.ca/locations/toronto-north",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "411.ca - Moving": [
+    {
+      "url": "http://www.moving-storage.net",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Junk Removal": [
+    {
+      "url": "https://www.opendi.ca/search/Junk+Removal.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Handyman": [
+    {
+      "url": "https://www.opendi.ca/search/Handyman.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Painting": [
+    {
+      "url": "https://www.opendi.ca/search/Painting.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ]
+}

@@ -45,6 +45,50 @@ def main():
     )
     process.start()  # blocking
 
+    # After the crawl completes, refresh the golden CSV so new good, unique
+    # entries are added. This mirrors the Streamlit app behavior and ensures
+    # headless runs also maintain providers-golden.csv.
+    try:
+        from golden_record_gen import (
+            main as build_golden_main,
+            GOLDEN_CSV,
+            read_csv_rows,
+            write_csv_rows,
+            normalize_phone,
+        )
+
+        # Rebuild golden from all outputs
+        build_golden_main()
+
+        # Augment this run's CSV with any golden rows not already present
+        try:
+            run_csv = Path(args.csv)
+            if run_csv.exists() and GOLDEN_CSV.exists():
+                cur_rows = read_csv_rows(run_csv)
+                cur_phones = set()
+                for r in cur_rows:
+                    ph = normalize_phone(r.get("phone"))
+                    if ph:
+                        cur_phones.add(ph)
+
+                golden_rows = read_csv_rows(GOLDEN_CSV)
+                add_rows = []
+                for r in golden_rows:
+                    ph = normalize_phone(r.get("phone"))
+                    if not ph or ph in cur_phones:
+                        continue
+                    rr = dict(r)
+                    rr["phone"] = ph
+                    add_rows.append(rr)
+
+                if add_rows:
+                    write_csv_rows(run_csv, cur_rows + add_rows)
+        except Exception:
+            pass
+    except Exception:
+        # Non-fatal: do not fail the run if golden regeneration has issues
+        pass
+
 
 if __name__ == "__main__":
     main()

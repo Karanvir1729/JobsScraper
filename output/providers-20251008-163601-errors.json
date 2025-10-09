@@ -1,0 +1,96 @@
+{
+  "Opendi - Plumbing": [
+    {
+      "url": "https://www.opendi.ca/search/Plumbing.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Plumbing": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=ON",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=BC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=AB",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=QC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - HVAC": [
+    {
+      "url": "https://www.opendi.ca/search/HVAC.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Roofing": [
+    {
+      "url": "https://www.opendi.ca/search/Roofing.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Lawn Care": [
+    {
+      "url": "https://www.opendi.ca/search/Lawn+Care.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - HVAC": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=HVAC&find_loc=ON",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=HVAC&find_loc=BC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=HVAC&find_loc=AB",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=HVAC&find_loc=QC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Roofing": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Roofing&find_loc=ON",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Roofing&find_loc=BC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Roofing&find_loc=AB",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Roofing&find_loc=QC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+{
+  "411.ca - Plumbing": [
+    {
+      "url": "https://www.instagram.com/411dotca/",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://twitter.com/411dotca",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.linkedin.com/company/411dotca",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.facebook.com/411dotca/",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    }
+  ]
+}

@@ -6,6 +6,7 @@
       "region": "ON, BC, AB, QC",
       "jsonld_fallback": true,
       "visit_website_for_email": true,
+      "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -58,6 +59,7 @@
           "a"
         ],
         "follow_links_selector": [
+          "a[href*='/business/profile/']",
           "a[href*='/business/']"
         ]
       },
@@ -162,115 +164,12 @@
       }
     },
     {
-      "name": "Opendi - Plumbing",
-      "category": "Plumbing",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.opendi.ca/"
-      },
-      "start_urls": [
-        "https://www.opendi.ca/search/?what=Plumbing&where=Ontario",
-        "https://www.opendi.ca/search/?what=Plumbing&where=British%20Columbia",
-        "https://www.opendi.ca/search/?what=Plumbing&where=Alberta",
-        "https://www.opendi.ca/search/?what=Plumbing&where=Quebec"
-      ],
-      "listing": {
-        "item_selector": [
-          "article",
-          "div.result",
-          "li"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "h3 a::text",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)"
-          ],
-          "address": [
-            "address::text",
-            "div.address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/place/']",
-          "a[href*='/listing/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": "a[href^='http']::attr(href)",
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Yelp - Plumbing",
-      "category": "Plumbing",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.yelp.ca/"
-      },
-      "start_urls": [
-        "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=Ontario%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=British%20Columbia%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=Alberta%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=Quebec%2C%20Canada"
-      ],
-      "listing": {
-        "follow_links_selector": [
-          "a[href*='/biz/']"
-        ]
-      },
-      "detail": {
-        "fields": {}
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']"
-        ]
-      }
-    },
-    {
       "name": "411.ca - HVAC",
       "category": "HVAC",
       "region": "ON, BC, AB, QC",
       "jsonld_fallback": true,
       "visit_website_for_email": true,
+      "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -323,6 +222,7 @@
           "a"
         ],
         "follow_links_selector": [
+          "a[href*='/business/profile/']",
           "a[href*='/business/']"
         ]
       },
@@ -427,115 +327,12 @@
       }
     },
     {
-      "name": "Opendi - HVAC",
-      "category": "HVAC",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.opendi.ca/"
-      },
-      "start_urls": [
-        "https://www.opendi.ca/search/?what=HVAC&where=Ontario",
-        "https://www.opendi.ca/search/?what=HVAC&where=British%20Columbia",
-        "https://www.opendi.ca/search/?what=HVAC&where=Alberta",
-        "https://www.opendi.ca/search/?what=HVAC&where=Quebec"
-      ],
-      "listing": {
-        "item_selector": [
-          "article",
-          "div.result",
-          "li"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "h3 a::text",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)"
-          ],
-          "address": [
-            "address::text",
-            "div.address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/place/']",
-          "a[href*='/listing/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": "a[href^='http']::attr(href)",
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Yelp - HVAC",
-      "category": "HVAC",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.yelp.ca/"
-      },
-      "start_urls": [
-        "https://www.yelp.ca/search?find_desc=HVAC&find_loc=Ontario%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=HVAC&find_loc=British%20Columbia%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=HVAC&find_loc=Alberta%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=HVAC&find_loc=Quebec%2C%20Canada"
-      ],
-      "listing": {
-        "follow_links_selector": [
-          "a[href*='/biz/']"
-        ]
-      },
-      "detail": {
-        "fields": {}
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']"
-        ]
-      }
-    },
-    {
       "name": "411.ca - Roofing",
       "category": "Roofing",
       "region": "ON, BC, AB, QC",
       "jsonld_fallback": true,
       "visit_website_for_email": true,
+      "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -588,6 +385,7 @@
           "a"
         ],
         "follow_links_selector": [
+          "a[href*='/business/profile/']",
           "a[href*='/business/']"
         ]
       },
@@ -692,115 +490,12 @@
       }
     },
     {
-      "name": "Opendi - Roofing",
-      "category": "Roofing",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.opendi.ca/"
-      },
-      "start_urls": [
-        "https://www.opendi.ca/search/?what=Roofing&where=Ontario",
-        "https://www.opendi.ca/search/?what=Roofing&where=British%20Columbia",
-        "https://www.opendi.ca/search/?what=Roofing&where=Alberta",
-        "https://www.opendi.ca/search/?what=Roofing&where=Quebec"
-      ],
-      "listing": {
-        "item_selector": [
-          "article",
-          "div.result",
-          "li"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "h3 a::text",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)"
-          ],
-          "address": [
-            "address::text",
-            "div.address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/place/']",
-          "a[href*='/listing/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": "a[href^='http']::attr(href)",
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Yelp - Roofing",
-      "category": "Roofing",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.yelp.ca/"
-      },
-      "start_urls": [
-        "https://www.yelp.ca/search?find_desc=Roofing&find_loc=Ontario%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Roofing&find_loc=British%20Columbia%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Roofing&find_loc=Alberta%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Roofing&find_loc=Quebec%2C%20Canada"
-      ],
-      "listing": {
-        "follow_links_selector": [
-          "a[href*='/biz/']"
-        ]
-      },
-      "detail": {
-        "fields": {}
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']"
-        ]
-      }
-    },
-    {
       "name": "411.ca - Lawn Care",
       "category": "Lawn Care",
       "region": "ON, BC, AB, QC",
       "jsonld_fallback": true,
       "visit_website_for_email": true,
+      "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -853,6 +548,7 @@
           "a"
         ],
         "follow_links_selector": [
+          "a[href*='/business/profile/']",
           "a[href*='/business/']"
         ]
       },
@@ -957,115 +653,12 @@
       }
     },
     {
-      "name": "Opendi - Lawn Care",
-      "category": "Lawn Care",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.opendi.ca/"
-      },
-      "start_urls": [
-        "https://www.opendi.ca/search/?what=Lawn%20Care&where=Ontario",
-        "https://www.opendi.ca/search/?what=Lawn%20Care&where=British%20Columbia",
-        "https://www.opendi.ca/search/?what=Lawn%20Care&where=Alberta",
-        "https://www.opendi.ca/search/?what=Lawn%20Care&where=Quebec"
-      ],
-      "listing": {
-        "item_selector": [
-          "article",
-          "div.result",
-          "li"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "h3 a::text",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)"
-          ],
-          "address": [
-            "address::text",
-            "div.address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/place/']",
-          "a[href*='/listing/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": "a[href^='http']::attr(href)",
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Yelp - Lawn Care",
-      "category": "Lawn Care",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.yelp.ca/"
-      },
-      "start_urls": [
-        "https://www.yelp.ca/search?find_desc=Lawn%20Care&find_loc=Ontario%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Lawn%20Care&find_loc=British%20Columbia%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Lawn%20Care&find_loc=Alberta%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Lawn%20Care&find_loc=Quebec%2C%20Canada"
-      ],
-      "listing": {
-        "follow_links_selector": [
-          "a[href*='/biz/']"
-        ]
-      },
-      "detail": {
-        "fields": {}
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']"
-        ]
-      }
-    },
-    {
       "name": "411.ca - Electrician",
       "category": "Electrician",
       "region": "ON, BC, AB, QC",
       "jsonld_fallback": true,
       "visit_website_for_email": true,
+      "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -1118,6 +711,7 @@
           "a"
         ],
         "follow_links_selector": [
+          "a[href*='/business/profile/']",
           "a[href*='/business/']"
         ]
       },
@@ -1222,115 +816,12 @@
       }
     },
     {
-      "name": "Opendi - Electrician",
-      "category": "Electrician",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.opendi.ca/"
-      },
-      "start_urls": [
-        "https://www.opendi.ca/search/?what=Electrician&where=Ontario",
-        "https://www.opendi.ca/search/?what=Electrician&where=British%20Columbia",
-        "https://www.opendi.ca/search/?what=Electrician&where=Alberta",
-        "https://www.opendi.ca/search/?what=Electrician&where=Quebec"
-      ],
-      "listing": {
-        "item_selector": [
-          "article",
-          "div.result",
-          "li"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "h3 a::text",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)"
-          ],
-          "address": [
-            "address::text",
-            "div.address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/place/']",
-          "a[href*='/listing/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": "a[href^='http']::attr(href)",
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Yelp - Electrician",
-      "category": "Electrician",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.yelp.ca/"
-      },
-      "start_urls": [
-        "https://www.yelp.ca/search?find_desc=Electrician&find_loc=Ontario%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Electrician&find_loc=British%20Columbia%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Electrician&find_loc=Alberta%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Electrician&find_loc=Quebec%2C%20Canada"
-      ],
-      "listing": {
-        "follow_links_selector": [
-          "a[href*='/biz/']"
-        ]
-      },
-      "detail": {
-        "fields": {}
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']"
-        ]
-      }
-    },
-    {
       "name": "411.ca - Pest Control",
       "category": "Pest Control",
       "region": "ON, BC, AB, QC",
       "jsonld_fallback": true,
       "visit_website_for_email": true,
+      "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -1383,6 +874,7 @@
           "a"
         ],
         "follow_links_selector": [
+          "a[href*='/business/profile/']",
           "a[href*='/business/']"
         ]
       },
@@ -1487,115 +979,12 @@
       }
     },
     {
-      "name": "Opendi - Pest Control",
-      "category": "Pest Control",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.opendi.ca/"
-      },
-      "start_urls": [
-        "https://www.opendi.ca/search/?what=Pest%20Control&where=Ontario",
-        "https://www.opendi.ca/search/?what=Pest%20Control&where=British%20Columbia",
-        "https://www.opendi.ca/search/?what=Pest%20Control&where=Alberta",
-        "https://www.opendi.ca/search/?what=Pest%20Control&where=Quebec"
-      ],
-      "listing": {
-        "item_selector": [
-          "article",
-          "div.result",
-          "li"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "h3 a::text",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)"
-          ],
-          "address": [
-            "address::text",
-            "div.address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/place/']",
-          "a[href*='/listing/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": "a[href^='http']::attr(href)",
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Yelp - Pest Control",
-      "category": "Pest Control",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.yelp.ca/"
-      },
-      "start_urls": [
-        "https://www.yelp.ca/search?find_desc=Pest%20Control&find_loc=Ontario%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Pest%20Control&find_loc=British%20Columbia%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Pest%20Control&find_loc=Alberta%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Pest%20Control&find_loc=Quebec%2C%20Canada"
-      ],
-      "listing": {
-        "follow_links_selector": [
-          "a[href*='/biz/']"
-        ]
-      },
-      "detail": {
-        "fields": {}
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']"
-        ]
-      }
-    },
-    {
       "name": "411.ca - Appliance Repair",
       "category": "Appliance Repair",
       "region": "ON, BC, AB, QC",
       "jsonld_fallback": true,
       "visit_website_for_email": true,
+      "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -1648,6 +1037,7 @@
           "a"
         ],
         "follow_links_selector": [
+          "a[href*='/business/profile/']",
           "a[href*='/business/']"
         ]
       },
@@ -1752,115 +1142,12 @@
       }
     },
     {
-      "name": "Opendi - Appliance Repair",
-      "category": "Appliance Repair",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.opendi.ca/"
-      },
-      "start_urls": [
-        "https://www.opendi.ca/search/?what=Appliance%20Repair&where=Ontario",
-        "https://www.opendi.ca/search/?what=Appliance%20Repair&where=British%20Columbia",
-        "https://www.opendi.ca/search/?what=Appliance%20Repair&where=Alberta",
-        "https://www.opendi.ca/search/?what=Appliance%20Repair&where=Quebec"
-      ],
-      "listing": {
-        "item_selector": [
-          "article",
-          "div.result",
-          "li"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "h3 a::text",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)"
-          ],
-          "address": [
-            "address::text",
-            "div.address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/place/']",
-          "a[href*='/listing/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": "a[href^='http']::attr(href)",
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Yelp - Appliance Repair",
-      "category": "Appliance Repair",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.yelp.ca/"
-      },
-      "start_urls": [
-        "https://www.yelp.ca/search?find_desc=Appliance%20Repair&find_loc=Ontario%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Appliance%20Repair&find_loc=British%20Columbia%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Appliance%20Repair&find_loc=Alberta%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Appliance%20Repair&find_loc=Quebec%2C%20Canada"
-      ],
-      "listing": {
-        "follow_links_selector": [
-          "a[href*='/biz/']"
-        ]
-      },
-      "detail": {
-        "fields": {}
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']"
-        ]
-      }
-    },
-    {
       "name": "411.ca - Moving",
       "category": "Moving",
       "region": "ON, BC, AB, QC",
       "jsonld_fallback": true,
       "visit_website_for_email": true,
+      "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -1913,6 +1200,7 @@
           "a"
         ],
         "follow_links_selector": [
+          "a[href*='/business/profile/']",
           "a[href*='/business/']"
         ]
       },
@@ -2017,115 +1305,12 @@
       }
     },
     {
-      "name": "Opendi - Moving",
-      "category": "Moving",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.opendi.ca/"
-      },
-      "start_urls": [
-        "https://www.opendi.ca/search/?what=Moving&where=Ontario",
-        "https://www.opendi.ca/search/?what=Moving&where=British%20Columbia",
-        "https://www.opendi.ca/search/?what=Moving&where=Alberta",
-        "https://www.opendi.ca/search/?what=Moving&where=Quebec"
-      ],
-      "listing": {
-        "item_selector": [
-          "article",
-          "div.result",
-          "li"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "h3 a::text",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)"
-          ],
-          "address": [
-            "address::text",
-            "div.address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/place/']",
-          "a[href*='/listing/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": "a[href^='http']::attr(href)",
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Yelp - Moving",
-      "category": "Moving",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.yelp.ca/"
-      },
-      "start_urls": [
-        "https://www.yelp.ca/search?find_desc=Moving&find_loc=Ontario%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Moving&find_loc=British%20Columbia%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Moving&find_loc=Alberta%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Moving&find_loc=Quebec%2C%20Canada"
-      ],
-      "listing": {
-        "follow_links_selector": [
-          "a[href*='/biz/']"
-        ]
-      },
-      "detail": {
-        "fields": {}
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']"
-        ]
-      }
-    },
-    {
       "name": "411.ca - Junk Removal",
       "category": "Junk Removal",
       "region": "ON, BC, AB, QC",
       "jsonld_fallback": true,
       "visit_website_for_email": true,
+      "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -2178,6 +1363,7 @@
           "a"
         ],
         "follow_links_selector": [
+          "a[href*='/business/profile/']",
           "a[href*='/business/']"
         ]
       },
@@ -2282,115 +1468,12 @@
       }
     },
     {
-      "name": "Opendi - Junk Removal",
-      "category": "Junk Removal",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.opendi.ca/"
-      },
-      "start_urls": [
-        "https://www.opendi.ca/search/?what=Junk%20Removal&where=Ontario",
-        "https://www.opendi.ca/search/?what=Junk%20Removal&where=British%20Columbia",
-        "https://www.opendi.ca/search/?what=Junk%20Removal&where=Alberta",
-        "https://www.opendi.ca/search/?what=Junk%20Removal&where=Quebec"
-      ],
-      "listing": {
-        "item_selector": [
-          "article",
-          "div.result",
-          "li"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "h3 a::text",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)"
-          ],
-          "address": [
-            "address::text",
-            "div.address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/place/']",
-          "a[href*='/listing/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": "a[href^='http']::attr(href)",
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Yelp - Junk Removal",
-      "category": "Junk Removal",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.yelp.ca/"
-      },
-      "start_urls": [
-        "https://www.yelp.ca/search?find_desc=Junk%20Removal&find_loc=Ontario%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Junk%20Removal&find_loc=British%20Columbia%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Junk%20Removal&find_loc=Alberta%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Junk%20Removal&find_loc=Quebec%2C%20Canada"
-      ],
-      "listing": {
-        "follow_links_selector": [
-          "a[href*='/biz/']"
-        ]
-      },
-      "detail": {
-        "fields": {}
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']"
-        ]
-      }
-    },
-    {
       "name": "411.ca - Handyman",
       "category": "Handyman",
       "region": "ON, BC, AB, QC",
       "jsonld_fallback": true,
       "visit_website_for_email": true,
+      "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -2443,6 +1526,7 @@
           "a"
         ],
         "follow_links_selector": [
+          "a[href*='/business/profile/']",
           "a[href*='/business/']"
         ]
       },
@@ -2547,115 +1631,12 @@
       }
     },
     {
-      "name": "Opendi - Handyman",
-      "category": "Handyman",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.opendi.ca/"
-      },
-      "start_urls": [
-        "https://www.opendi.ca/search/?what=Handyman&where=Ontario",
-        "https://www.opendi.ca/search/?what=Handyman&where=British%20Columbia",
-        "https://www.opendi.ca/search/?what=Handyman&where=Alberta",
-        "https://www.opendi.ca/search/?what=Handyman&where=Quebec"
-      ],
-      "listing": {
-        "item_selector": [
-          "article",
-          "div.result",
-          "li"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "h3 a::text",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)"
-          ],
-          "address": [
-            "address::text",
-            "div.address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/place/']",
-          "a[href*='/listing/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": "a[href^='http']::attr(href)",
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Yelp - Handyman",
-      "category": "Handyman",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.yelp.ca/"
-      },
-      "start_urls": [
-        "https://www.yelp.ca/search?find_desc=Handyman&find_loc=Ontario%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Handyman&find_loc=British%20Columbia%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Handyman&find_loc=Alberta%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Handyman&find_loc=Quebec%2C%20Canada"
-      ],
-      "listing": {
-        "follow_links_selector": [
-          "a[href*='/biz/']"
-        ]
-      },
-      "detail": {
-        "fields": {}
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']"
-        ]
-      }
-    },
-    {
       "name": "411.ca - Painting",
       "category": "Painting",
       "region": "ON, BC, AB, QC",
       "jsonld_fallback": true,
       "visit_website_for_email": true,
+      "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
@@ -2708,6 +1689,7 @@
           "a"
         ],
         "follow_links_selector": [
+          "a[href*='/business/profile/']",
           "a[href*='/business/']"
         ]
       },
@@ -2809,110 +1791,6 @@
           "start": 1,
           "max_pages": 40
         }
-      }
-    },
-    {
-      "name": "Opendi - Painting",
-      "category": "Painting",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.opendi.ca/"
-      },
-      "start_urls": [
-        "https://www.opendi.ca/search/?what=Painting&where=Ontario",
-        "https://www.opendi.ca/search/?what=Painting&where=British%20Columbia",
-        "https://www.opendi.ca/search/?what=Painting&where=Alberta",
-        "https://www.opendi.ca/search/?what=Painting&where=Quebec"
-      ],
-      "listing": {
-        "item_selector": [
-          "article",
-          "div.result",
-          "li"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "h3 a::text",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)"
-          ],
-          "address": [
-            "address::text",
-            "div.address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/place/']",
-          "a[href*='/listing/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": "a[href^='http']::attr(href)",
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Yelp - Painting",
-      "category": "Painting",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.yelp.ca/"
-      },
-      "start_urls": [
-        "https://www.yelp.ca/search?find_desc=Painting&find_loc=Ontario%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Painting&find_loc=British%20Columbia%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Painting&find_loc=Alberta%2C%20Canada",
-        "https://www.yelp.ca/search?find_desc=Painting&find_loc=Quebec%2C%20Canada"
-      ],
-      "listing": {
-        "follow_links_selector": [
-          "a[href*='/biz/']"
-        ]
-      },
-      "detail": {
-        "fields": {}
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']"
-        ]
       }
     }
   ]

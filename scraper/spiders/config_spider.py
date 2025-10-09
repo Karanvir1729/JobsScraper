@@ -35,6 +35,8 @@ class ConfigSpider(scrapy.Spider):
         self.min_per_source = int(min_per_source) if min_per_source else 0
         # API-specific stats (e.g., Yelp)
         self._yelp_stats: Dict[str, Dict[str, Any]] = {}
+        # Track seen phones per source to avoid duplicate fallback items
+        self._seen_phones_by_source: Dict[str, set] = defaultdict(set)
 
     def start_requests(self):
         # Load sources from YAML or JSON based on file extension
@@ -181,9 +183,11 @@ class ConfigSpider(scrapy.Spider):
                 produced += 1
                 yield req
             else:
-                self._counts[source_name] += 1
-                produced += 1
-                yield item
+                # Only emit items with phone
+                if item.get("phone"):
+                    self._counts[source_name] += 1
+                    produced += 1
+                    yield item
 
         # Yelp API pagination via offset
         y = (response.meta.get("_yelp") or {}).copy()
@@ -248,10 +252,11 @@ class ConfigSpider(scrapy.Spider):
             wreq.meta["cfg"] = cfg
             yield wreq
             return
-        # Else, yield the item as-is
-        if source_name:
-            self._counts[source_name] += 1
-        yield item
+        # Else, yield the item as-is (only if phone present)
+        if item.get("phone"):
+            if source_name:
+                self._counts[source_name] += 1
+            yield item
 
     def parse_listing(self, response: scrapy.http.Response):
         cfg = response.meta.get("cfg", {})
@@ -320,6 +325,13 @@ class ConfigSpider(scrapy.Spider):
                         if maybe:
                             item["business_name"] = maybe
 
+                    # Record seen phone to avoid duplicate fallback entries
+                    if item.get("phone") and source_name:
+                        try:
+                            self._seen_phones_by_source[source_name].add(item["phone"])
+                        except Exception:
+                            pass
+
                     # Optionally follow detail page for richer data
                     detail_link_sel = listing.get("detail_link_selector")
                     detail_url = U.absolute_url(response.url, U.extract_attr(card, detail_link_sel, "href")) if detail_link_sel else None
@@ -348,9 +360,11 @@ class ConfigSpider(scrapy.Spider):
                             wreq.meta["cfg"] = cfg
                             yield wreq
                         else:
-                            produced += 1
-                            self._counts[source_name] += 1
-                            yield item
+                            # Only emit items with a phone number
+                            if item.get("phone"):
+                                produced += 1
+                                self._counts[source_name] += 1
+                                yield item
 
         # Follow arbitrary links selector (useful for index pages without clear cards)
         follow_sel = (cfg.get("listing") or {}).get("follow_links_selector")
@@ -401,9 +415,51 @@ class ConfigSpider(scrapy.Spider):
                         item["city"] = addr.get("addressLocality")
                         item["province"] = addr.get("addressRegion")
                         item["postal_code"] = addr.get("postalCode")
-                    produced += 1
+                    if item.get("phone"):
+                        produced += 1
+                        self._counts[source_name] += 1
+                        yield item
+
+        # Broad fallback: scan page for phone anchors and create items if missing (opt-in via config)
+        if cfg.get("scan_phones_on_page"):
+            try:
+                fields = (listing.get("fields") or {})
+                for tel in response.css("a[href^='tel:']"):
+                    href = tel.attrib.get("href") or tel.css("::attr(href)").get()
+                    phone_norm = U.normalize_phone(href)
+                    if not phone_norm:
+                        continue
+                    if source_name and phone_norm in self._seen_phones_by_source.get(source_name, set()):
+                        continue
+                    # Find nearest container resembling a card
+                    container = tel.xpath("ancestor::*[self::div[contains(@class,'listing') or contains(@class,'result')] or self::article or self::li][1]")
+                    card = container if container else response
+                    item = ProviderItem()
+                    item["source"] = source_name
+                    item["category"] = cfg.get("category")
+                    item["region"] = cfg.get("region")
+                    item["listing_url"] = response.url
+                    item["phone"] = phone_norm
+                    # Attempt to extract a nearby business name using the same field strategy
+                    name = U.extract_first(card, (fields.get("business_name") or []))
+                    if not name:
+                        # Try common alternatives near the phone
+                        name = U.extract_first(card, ["h2 a::text", "h3 a::text", "[itemprop='name']::text", "a[title]::attr(title)"])
+                    item["business_name"] = name
+                    # Try to attach a website if present in container
+                    if not item.get("website"):
+                        href = U.extract_attr(card, (fields.get("website") or ["a[href^='http']"]), "href")
+                        if href:
+                            item["website"] = U.absolute_url(response.url, href)
+                    # Address best-effort
+                    item.setdefault("address", U.extract_first(card, (fields.get("address") or [])))
+                    # Emit and track
                     self._counts[source_name] += 1
+                    if source_name:
+                        self._seen_phones_by_source[source_name].add(phone_norm)
                     yield item
+            except Exception as e:
+                self.logger.debug("Fallback phone scan failed: %s", e)
 
         # pagination via selectors (rel=next etc.)
         next_sel = (cfg.get("pagination") or {}).get("next_page_selector")
@@ -509,10 +565,12 @@ class ConfigSpider(scrapy.Spider):
             wreq.meta["cfg"] = cfg
             yield wreq
         else:
+            # Only emit from detail if phone present
             src = item.get("source")
-            if src:
-                self._counts[src] += 1
-            yield item
+            if item.get("phone"):
+                if src:
+                    self._counts[src] += 1
+                yield item
 
     def parse_website_email(self, response: scrapy.http.Response):
         item: ProviderItem = response.meta["item"]
@@ -539,11 +597,12 @@ class ConfigSpider(scrapy.Spider):
                 creq.meta["_contact_tried"] = True
                 yield creq
                 return
-        # Yield item now
+        # Yield item now only if phone present
         src = item.get("source")
-        if src:
-            self._counts[src] += 1
-        yield item
+        if item.get("phone"):
+            if src:
+                self._counts[src] += 1
+            yield item
 
     def closed(self, reason):
         if not self.summary_file:

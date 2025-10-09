@@ -1,0 +1,79 @@
+{
+  "Opendi - Plumbing": [
+    {
+      "url": "https://www.opendi.ca/search/?q=Plumbing",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - HVAC": [
+    {
+      "url": "https://www.opendi.ca/search/?q=HVAC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Roofing": [
+    {
+      "url": "https://www.opendi.ca/search/?q=Roofing",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Lawn Care": [
+    {
+      "url": "https://www.opendi.ca/search/?q=Lawn%20Care",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Electrician": [
+    {
+      "url": "https://www.opendi.ca/search/?q=Electrician",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Pest Control": [
+    {
+      "url": "https://www.opendi.ca/search/?q=Pest%20Control",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Appliance Repair": [
+    {
+      "url": "https://www.opendi.ca/search/?q=Appliance%20Repair",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Moving": [
+    {
+      "url": "https://www.opendi.ca/search/?q=Moving",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Junk Removal": [
+    {
+      "url": "https://www.opendi.ca/search/?q=Junk%20Removal",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Handyman": [
+    {
+      "url": "https://www.opendi.ca/search/?q=Handyman",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Painting": [
+    {
+      "url": "https://www.opendi.ca/search/?q=Painting",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ]
+}

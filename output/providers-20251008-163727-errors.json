@@ -1,0 +1,384 @@
+{
+  "Yelp - Plumbing": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=ON",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=BC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=AB",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=QC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Plumbing": [
+    {
+      "url": "https://www.opendi.ca/search/Plumbing.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - HVAC": [
+    {
+      "url": "https://www.opendi.ca/search/HVAC.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "411.ca - Plumbing": [
+    {
+      "url": "https://www.instagram.com/411dotca/",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://twitter.com/411dotca",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.linkedin.com/company/411dotca",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.facebook.com/411dotca/",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    }
+  ],
+  "Opendi - Roofing": [
+    {
+      "url": "https://www.opendi.ca/search/Roofing.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - HVAC": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=HVAC&find_loc=ON",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=HVAC&find_loc=BC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=HVAC&find_loc=AB",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=HVAC&find_loc=QC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Roofing": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Roofing&find_loc=ON",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Roofing&find_loc=BC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Roofing&find_loc=AB",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Roofing&find_loc=QC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Hotfrog - Plumbing": [
+    {
+      "url": "https://www.linkedin.com/company/locafy/",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.facebook.com/HotfrogCA",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.hotfrog.ca/login",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.hotfrog.ca/add",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    }
+  ],
+  "Opendi - Lawn Care": [
+    {
+      "url": "https://www.opendi.ca/search/Lawn+Care.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Lawn Care": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Lawn%20Care&find_loc=ON",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Lawn%20Care&find_loc=BC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Lawn%20Care&find_loc=AB",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Lawn%20Care&find_loc=QC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Electrician": [
+    {
+      "url": "https://www.opendi.ca/search/Electrician.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Electrician": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Electrician&find_loc=ON",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Electrician&find_loc=BC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Electrician&find_loc=AB",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Electrician&find_loc=QC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Pest Control": [
+    {
+      "url": "https://www.opendi.ca/search/Pest+Control.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Pest Control": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Pest%20Control&find_loc=ON",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Pest%20Control&find_loc=BC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Pest%20Control&find_loc=AB",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Pest%20Control&find_loc=QC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Appliance Repair": [
+    {
+      "url": "https://www.opendi.ca/search/Appliance+Repair.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Appliance Repair": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Appliance%20Repair&find_loc=ON",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Appliance%20Repair&find_loc=BC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Appliance%20Repair&find_loc=AB",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Appliance%20Repair&find_loc=QC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Moving": [
+    {
+      "url": "https://www.opendi.ca/search/Moving.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Moving": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Moving&find_loc=ON",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Moving&find_loc=BC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Moving&find_loc=AB",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Moving&find_loc=QC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Junk Removal": [
+    {
+      "url": "https://www.opendi.ca/search/Junk+Removal.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "411.ca - Junk Removal": [
+    {
+      "url": "http://www.ateliercanada.com",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.junk-king.ca/locations/toronto-north",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "411.ca - Appliance Repair": [
+    {
+      "url": "http://www.abcappliancestoronto.ca",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Junk Removal": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Junk%20Removal&find_loc=ON",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Junk%20Removal&find_loc=BC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Junk%20Removal&find_loc=AB",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Junk%20Removal&find_loc=QC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Handyman": [
+    {
+      "url": "https://www.opendi.ca/search/Handyman.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Handyman": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Handyman&find_loc=ON",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Handyman&find_loc=BC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Handyman&find_loc=AB",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Handyman&find_loc=QC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Opendi - Painting": [
+    {
+      "url": "https://www.opendi.ca/search/Painting.html",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Painting": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Painting&find_loc=ON",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Painting&find_loc=BC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Painting&find_loc=AB",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Painting&find_loc=QC",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ]
+}

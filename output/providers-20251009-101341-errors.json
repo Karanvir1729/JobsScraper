@@ -1,0 +1,244 @@
+{
+  "Yelp - Plumbing": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=Ontario%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=British%20Columbia%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=Alberta%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=Quebec%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - HVAC": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=HVAC&find_loc=Ontario%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=HVAC&find_loc=British%20Columbia%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=HVAC&find_loc=Alberta%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=HVAC&find_loc=Quebec%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Roofing": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Roofing&find_loc=Ontario%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Roofing&find_loc=British%20Columbia%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Roofing&find_loc=Alberta%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Roofing&find_loc=Quebec%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Lawn Care": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Lawn%20Care&find_loc=Ontario%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Lawn%20Care&find_loc=British%20Columbia%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Lawn%20Care&find_loc=Alberta%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Lawn%20Care&find_loc=Quebec%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Electrician": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Electrician&find_loc=Ontario%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Electrician&find_loc=British%20Columbia%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Electrician&find_loc=Alberta%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Electrician&find_loc=Quebec%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Pest Control": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Pest%20Control&find_loc=Ontario%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Pest%20Control&find_loc=British%20Columbia%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Pest%20Control&find_loc=Alberta%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Pest%20Control&find_loc=Quebec%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Appliance Repair": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Appliance%20Repair&find_loc=Ontario%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Appliance%20Repair&find_loc=British%20Columbia%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Appliance%20Repair&find_loc=Alberta%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Appliance%20Repair&find_loc=Quebec%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Moving": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Moving&find_loc=Ontario%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Moving&find_loc=British%20Columbia%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Moving&find_loc=Alberta%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Moving&find_loc=Quebec%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Junk Removal": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Junk%20Removal&find_loc=Ontario%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Junk%20Removal&find_loc=British%20Columbia%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Junk%20Removal&find_loc=Alberta%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Junk%20Removal&find_loc=Quebec%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Handyman": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Handyman&find_loc=Ontario%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Handyman&find_loc=British%20Columbia%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Handyman&find_loc=Alberta%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Handyman&find_loc=Quebec%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Yelp - Painting": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Painting&find_loc=Ontario%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Painting&find_loc=British%20Columbia%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Painting&find_loc=Alberta%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Painting&find_loc=Quebec%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ]
+}

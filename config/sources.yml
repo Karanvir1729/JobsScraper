@@ -48,7 +48,11 @@ sources:
     - h3 a
     - a
     follow_links_selector:
+    - a[href*='/business/profile/']
     - a[href*='/business/']
+    # Broad fallback: also scan the page for tel: links to ensure we capture phone/name combos even if card selectors miss some
+    # (This can produce looser matches but helps maximize recall.)
+  scan_phones_on_page: true
   detail:
     fields:
       business_name:

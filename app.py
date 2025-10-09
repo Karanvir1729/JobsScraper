@@ -14,12 +14,20 @@ import csv
 import sys
 import subprocess
 from scrapy.utils.project import get_project_settings
+from golden_record_gen import (
+    main as build_golden_main,
+    GOLDEN_CSV as _GOLDEN_CSV,
+    read_csv_rows as _read_rows_g,
+    write_csv_rows as _write_rows_g,
+    normalize_phone as _norm_phone,
+)
 
 
 # Default to JSON config (can still read YAML if provided)
 DEFAULT_CONFIG_PATH = Path("config/sources.json")
 EXAMPLE_CONFIG_PATH = Path("config/sources.example.json")
 OUTPUT_DIR = Path("output")
+GOLDEN_CSV = OUTPUT_DIR / "providers-golden.csv"
 
 # Provinces and default categories
 PROVINCES = [
@@ -116,7 +124,10 @@ def build_dynamic_sources(selected_sources: list[str], categories: list[str], pr
             "address": ["div.address::text", "address::text"],
         },
         "detail_link_selector": ["h2 a", "a.business-name", "h3 a", "a"],
-        "follow_links_selector": ["a[href*='/business/']"],
+        "follow_links_selector": [
+            "a[href*='/business/profile/']",
+            "a[href*='/business/']",
+        ],
     }
 
     sel_hotfrog = {
@@ -161,6 +172,7 @@ def build_dynamic_sources(selected_sources: list[str], categories: list[str], pr
                 "region": ", ".join(provinces),
                 "jsonld_fallback": True,
                 "visit_website_for_email": visit_web_email,
+                "scan_phones_on_page": True,
                 "headers": {**headers, "Referer": "https://411.ca/"},
                 "start_urls": start_urls,
                 "listing": sel_411,
@@ -292,6 +304,93 @@ def save_config_text(path: Path, text: str) -> None:
         path.write_text(text, encoding="utf-8")
 
 
+def _preferred_csv_fields() -> list[str]:
+    return [
+        "source","category","region",
+        "business_name","phone","email","website",
+        "address","city","province","postal_code",
+        "listing_url","detail_url",
+    ]
+
+
+def _read_csv_rows(p: Path) -> list[dict]:
+    try:
+        with p.open("r", encoding="utf-8", newline="") as f:
+            reader = csv.DictReader(f)
+            return [dict(r) for r in reader]
+    except Exception:
+        return []
+
+
+def _write_csv_rows(p: Path, rows: list[dict]):
+    if not rows:
+        # Ensure file exists even if empty
+        p.write_text("", encoding="utf-8")
+        return
+    # Union of keys with preferred ordering
+    keys = set()
+    for r in rows:
+        keys.update(r.keys())
+    ordered = [k for k in _preferred_csv_fields() if k in keys]
+    extras = [k for k in sorted(keys) if k not in ordered]
+    fieldnames = ordered + extras
+    with p.open("w", encoding="utf-8", newline="") as f:
+        w = csv.DictWriter(f, fieldnames=fieldnames)
+        w.writeheader()
+        for r in rows:
+            w.writerow({k: r.get(k, "") for k in fieldnames})
+
+
+def _merge_dict_priority(a: dict, b: dict) -> dict:
+    # Merge two dicts favoring non-empty values from a, then b
+    out = dict(a)
+    for k, v in b.items():
+        av = out.get(k)
+        if (av is None or str(av).strip() == "") and v:
+            out[k] = v
+    return out
+
+
+def update_golden_and_augment(csv_path: Path) -> None:
+    """Ensure this run's CSV starts with Golden baseline, then adds new exact-unique rows.
+
+    Rules:
+    - Do not remove any existing Golden rows
+    - Only drop exact duplicates (row equality across fields)
+    - Include only rows with a phone number
+    - Persist updated Golden after augmenting
+    """
+    try:
+        OUTPUT_DIR.mkdir(exist_ok=True)
+        if not csv_path.exists():
+            return
+        # Helper to canonicalize a row for exact-dup detection
+        def _canon(r: dict) -> str:
+            items = sorted((str(k), "" if r.get(k) is None else str(r.get(k))) for k in r.keys())
+            return "\u241F".join([f"{k}\u241E{v}" for k, v in items])
+
+        # Load baseline (Golden) and current
+        golden_rows = _read_rows_g(_GOLDEN_CSV) if _GOLDEN_CSV.exists() else []
+        golden_rows = [dict(r) for r in golden_rows if (_norm_phone(r.get("phone")) or "")]
+        current_rows = [dict(r) for r in _read_csv_rows(csv_path) if (_norm_phone(r.get("phone")) or "")]
+
+        seen = { _canon(r) for r in golden_rows }
+        new_rows = []
+        for r in current_rows:
+            key = _canon(r)
+            if key in seen:
+                continue
+            new_rows.append(r)
+            seen.add(key)
+
+        combined = list(golden_rows) + new_rows
+        _write_rows_g(csv_path, combined)
+        _write_rows_g(_GOLDEN_CSV, combined)
+    except Exception:
+        # Silent failure: do not block the run on golden handling
+        pass
+
+
 def run_scrape(config_path: Path, time_limit_sec: int, max_items: int | None,
                concurrent_requests: int, download_delay: float, min_per_source: int) -> Path:
     """Run the Scrapy spider in a subprocess to avoid Twisted signal issues."""
@@ -324,6 +423,13 @@ def run_scrape(config_path: Path, time_limit_sec: int, max_items: int | None,
         tail = "\n".join(completed.stdout.splitlines()[-10:])
         if tail:
             st.code(tail)
+
+    # Update golden CSV and augment this run's CSV silently
+    try:
+        if csv_path.exists():
+            update_golden_and_augment(csv_path)
+    except Exception:
+        pass
 
     # Attach paths to session for display
     st.session_state["last_summary_path"] = str(summary_path)
@@ -435,8 +541,8 @@ def main():
 
     with st.sidebar:
         st.header("Run Settings")
-        time_limit = st.number_input("Max runtime (seconds)", min_value=15, max_value=60*60, value=900, step=15)
-        max_items = st.number_input("Max items (optional)", min_value=0, max_value=100000, value=0, step=50,
+        time_limit = st.number_input("Max runtime (seconds)", min_value=15, max_value=60*60, value=15, step=15)
+        max_items = st.number_input("Max items (optional, reccomended 0)", min_value=0, max_value=100000, value=0, step=50,
                                     help="Stop after N items. Leave 0 to ignore.")
         concurrent_requests = st.slider("Concurrent requests", min_value=2, max_value=32, value=10)
         download_delay = st.slider("Download delay (seconds)", min_value=0.0, max_value=5.0, value=0.6, step=0.1)
@@ -448,7 +554,11 @@ def main():
     st.caption("Build from categories or edit raw JSON.")
 
     with st.expander("Build from Categories", expanded=True):
-        sel_sources = st.multiselect("Sources", options=["411.ca","Hotfrog","Opendi","Yelp","Yelp API"], default=["411.ca","Hotfrog","Opendi","Yelp"]) 
+        sel_sources = st.multiselect(
+            "Sources",
+            options=["411.ca","Hotfrog","Opendi","Yelp","Yelp API"],
+            default=["411.ca","Hotfrog"]
+        ) 
         sel_provinces = st.multiselect("Provinces", options=PROVINCES, default=["ON","BC","AB","QC"]) 
         visit_web_email = st.checkbox("Visit business websites to find emails", value=True)
         st.caption("Pick service categories (type to search)")
@@ -548,6 +658,11 @@ def main():
                 elapsed = 0.0
             csv_path = Path(job.get("csv_path", ""))
             if csv_path.exists():
+                # Update golden CSV and augment user CSV silently
+                try:
+                    update_golden_and_augment(csv_path)
+                except Exception:
+                    pass
                 st.session_state["last_csv_path"] = str(csv_path)
                 st.session_state["last_finish_elapsed"] = float(elapsed)
                 st.session_state["last_finish_csv_name"] = csv_path.name

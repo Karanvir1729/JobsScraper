@@ -1,0 +1,24 @@
+{
+  "Yelp - Plumbing": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=Ontario%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=British%20Columbia%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=Alberta%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=Quebec%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ]
+}

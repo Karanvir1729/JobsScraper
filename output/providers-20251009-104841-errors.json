@@ -1,0 +1,63 @@
+{
+  "Yelp - Plumbing": [
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=Ontario%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=British%20Columbia%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    },
+    {
+      "url": "https://www.yelp.ca/search?find_desc=Plumbing&find_loc=Alberta%2C%20Canada",
+      "error": "Ignoring non-200 response",
+      "type": "HttpError"
+    }
+  ],
+  "Hotfrog - Plumbing": [
+    {
+      "url": "https://www.linkedin.com/company/locafy/",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.facebook.com/HotfrogCA",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.hotfrog.ca/login",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.hotfrog.ca/add",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    }
+  ],
+  "411.ca - Plumbing": [
+    {
+      "url": "https://www.instagram.com/411dotca/",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://twitter.com/411dotca",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.linkedin.com/company/411dotca",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    },
+    {
+      "url": "https://www.facebook.com/411dotca/",
+      "error": "Forbidden by robots.txt",
+      "type": "IgnoreRequest"
+    }
+  ]
+}

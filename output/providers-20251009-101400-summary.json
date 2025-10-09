@@ -1,0 +1,17 @@
+{
+  "reason": "closespider_timeout",
+  "counts": {},
+  "configured_sources": [
+    "Yelp - Plumbing",
+    "Yelp - HVAC",
+    "Yelp - Roofing",
+    "Yelp - Lawn Care",
+    "Yelp - Electrician",
+    "Yelp - Pest Control",
+    "Yelp - Appliance Repair",
+    "Yelp - Moving",
+    "Yelp - Junk Removal",
+    "Yelp - Handyman",
+    "Yelp - Painting"
+  ]
+}
