@@ -1,6 +1,7 @@
 import json
 import os
 from typing import Any, Dict, List, Optional
+from pathlib import Path
 
 import yaml
 import csv
@@ -35,6 +36,28 @@ class ConfigSpider(scrapy.Spider):
         self.min_per_source = int(min_per_source) if min_per_source else 0
         # API-specific stats (e.g., Yelp)
         self._yelp_stats: Dict[str, Dict[str, Any]] = {}
+        # Golden record caches
+        self._golden_phones: set[str] = set()
+        self._golden_listing_urls: set[str] = set()
+        self._golden_detail_urls: set[str] = set()
+        try:
+            gpath = Path("output") / "providers-golden.csv"
+            if gpath.exists():
+                import csv as _csv
+                with gpath.open("r", encoding="utf-8", newline="") as f:
+                    rdr = _csv.DictReader(f)
+                    for r in rdr:
+                        ph = (r.get("phone") or "").strip()
+                        if ph:
+                            self._golden_phones.add(ph)
+                        lu = (r.get("listing_url") or "").strip()
+                        if lu:
+                            self._golden_listing_urls.add(lu)
+                        du = (r.get("detail_url") or "").strip()
+                        if du:
+                            self._golden_detail_urls.add(du)
+        except Exception:
+            pass
         # Track seen phones per source to avoid duplicate fallback items
         self._seen_phones_by_source: Dict[str, set] = defaultdict(set)
 
@@ -272,6 +295,28 @@ class ConfigSpider(scrapy.Spider):
                 "note": "Non-2xx listing page",
             })
 
+        # Optionally skip listing pages we've already covered in Golden
+        if cfg.get("skip_visited_listings") and response.url in self._golden_listing_urls:
+            # Try to advance pagination without parsing this page's items
+            # pagination via selectors (rel=next etc.)
+            next_sel = (cfg.get("pagination") or {}).get("next_page_selector")
+            for sel in U.listify(next_sel):
+                href = response.css((sel + "::attr(href)") if "::attr(" not in sel else sel).get()
+                if href:
+                    url = U.absolute_url(response.url, href)
+                    yield response.follow(url, callback=self.parse_listing, meta=response.meta, headers=cfg.get("headers") or {})
+                    return
+            # pagination via query param (?page=2)
+            pconf = (cfg.get("pagination") or {}).get("param")
+            if isinstance(pconf, dict) and pconf.get("name"):
+                name = pconf.get("name")
+                start = int(pconf.get("start") or 1)
+                cur = U.get_query_int(response.url, name, default=start)
+                nxt = cur + 1
+                next_url = U.set_query_param(response.url, name, nxt)
+                yield response.follow(next_url, callback=self.parse_listing, meta=response.meta, headers=cfg.get("headers") or {})
+                return
+
         if item_selector:
             for sel in U.listify(item_selector):
                 for card in response.css(sel):
@@ -337,7 +382,7 @@ class ConfigSpider(scrapy.Spider):
                     detail_url = U.absolute_url(response.url, U.extract_attr(card, detail_link_sel, "href")) if detail_link_sel else None
                     if detail_url:
                         item["detail_url"] = detail_url
-                    if detail_url and (cfg.get("detail") or {}).get("fields"):
+                    if detail_url and (cfg.get("detail") or {}).get("fields") and not (cfg.get("skip_visited_details") and detail_url in self._golden_detail_urls):
                         req = scrapy.Request(
                             detail_url,
                             callback=self.parse_detail,
@@ -349,7 +394,7 @@ class ConfigSpider(scrapy.Spider):
                         yield req
                     else:
                         # Optionally visit business website to hunt email
-                        if (not item.get("email")) and item.get("website") and cfg.get("visit_website_for_email"):
+                        if (not item.get("email")) and item.get("website") and cfg.get("visit_website_for_email") and not (cfg.get("skip_visited_details") and (item.get("phone") in self._golden_phones)):
                             wreq = scrapy.Request(
                                 item["website"],
                                 callback=self.parse_website_email,
@@ -554,7 +599,7 @@ class ConfigSpider(scrapy.Spider):
                         item.setdefault("postal_code", addr.get("postalCode"))
 
         # Optionally visit business website to hunt email if still missing
-        if (not item.get("email")) and item.get("website") and cfg.get("visit_website_for_email"):
+        if (not item.get("email")) and item.get("website") and cfg.get("visit_website_for_email") and not (cfg.get("skip_visited_details") and (item.get("phone") in self._golden_phones)):
             wreq = scrapy.Request(
                 item["website"],
                 callback=self.parse_website_email,
