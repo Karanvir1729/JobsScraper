@@ -1,0 +1,80 @@
+High-level Notes for JobsScraper
+================================
+
+Scope: Streamlit UI + Scrapy spider to extract Canadian home services provider data (name, phone, email, website, address). The focus is maximizing high‑quality rows with phone numbers and building a persistent Golden Record across runs.
+
+What We Improved
+- 411.ca extraction (primary source)
+  - Stronger selectors for business names and phones (uses h1/h2/a, itemprop=name/telephone, title attributes, etc.).
+  - Follows profile pages first (links like /business/profile/…) and enriches from detail pages.
+  - Broad fallback: scans tel: links on listing pages and creates items from nearby context to avoid missing cards (deduped by phone).
+  - Only emits rows that include a phone number.
+
+- Hotfrog extraction
+  - Added robust selectors for multiple card shapes (article, div.result, li, div.card, div.search-results__result).
+  - Enriches on detail pages and enables tel: scanning as fallback; phone required.
+
+- Opendi
+  - Switched to stable query format (what/where) if enabled. Disabled by default in UI.
+
+- Yelp
+  - HTML search returns 403 frequently; left HTML + API code paths available but disabled by default in UI.
+
+Golden Record (providers-golden.csv)
+- Maintains a persistent CSV of “good” rows (must have phone).
+- Each app run:
+  - Starts the run CSV with the Golden baseline (exact rows).
+  - Appends only new, exact-unique rows from the current crawl (no duplicates).
+  - Updates the Golden CSV to include the combined set.
+- Standalone generator: `python3 golden_record_gen.py` rebuilds/extends the Golden from all run CSVs without removing non-duplicate rows.
+
+Robots.txt, Concurrency, and Delays
+- The spider obeys robots.txt (ROBOTSTXT_OBEY=True).
+- UI lets you tune:
+  - Concurrent requests (default 10)
+  - Download delay (default 0.6s)
+  - Max runtime via CLOSESPIDER_TIMEOUT
+  - Min items per source (crawler paginates to try to reach this)
+- For “tough” sites, reduce concurrency (e.g., 6) and increase delay (0.8–1.5s).
+
+Extraction Strategy
+- Listing pages: extract business_name, phone, website, address; follow detail links where available.
+- Detail pages: enrich with h1/itemprop fields and JSON-LD when present.
+- Fallbacks:
+  - tel: scanning on listing pages (411 + Hotfrog) to capture missed cards.
+  - Email discovery: mailto: + de‑obfuscated text + contact page if configured.
+- Output includes: source, category, region, business_name, phone, email, website, address, city, province, postal_code, listing_url, detail_url.
+
+Defaults and Sources
+- Default config (config/sources.json) now mirrors the “boost” setups:
+  - Many high‑yield categories across Canada for 411.ca and Hotfrog.
+  - Opendi/Yelp present in code, but not included by default.
+
+Operational Tips
+- Increase timeout for larger runs (e.g., 1800s or more).
+- Run focused boost configs to feed the Golden quickly; subsequent runs benefit automatically.
+- All rows require a phone number to be included.
+
+Boost Runs (commands)
+- Hotfrog boost (one line):
+  OUT="output/providers-hotfrog-boost-$(date +%Y%m%d-%H%M%S)"; .venv/bin/python run_spider.py --config config/boost_hotfrog.json --csv "${OUT}.csv" --summary "${OUT}-summary.json" --errors "${OUT}-errors.json" --timeout 1800 --concurrent 8 --delay 0.6 --min-per-source 50
+
+- 411.ca boost (one line):
+  OUT="output/providers-411-boost-$(date +%Y%m%d-%H%M%S)"; .venv/bin/python run_spider.py --config config/boost_411.json --csv "${OUT}.csv" --summary "${OUT}-summary.json" --errors "${OUT}-errors.json" --timeout 1800 --concurrent 8 --delay 0.6 --min-per-source 50
+
+- Multi-line form (zsh/bash) — example for Hotfrog:
+  OUT="output/providers-hotfrog-boost-$(date +%Y%m%d-%H%M%S)"
+  .venv/bin/python run_spider.py \
+    --config config/boost_hotfrog.json \
+    --csv "${OUT}.csv" \
+    --summary "${OUT}-summary.json" \
+    --errors "${OUT}-errors.json" \
+    --timeout 1800 \
+    --concurrent 8 \
+    --delay 0.6 \
+    --min-per-source 50
+
+- Update the Golden Record after a boost run:
+  python3 golden_record_gen.py
+
+- Note: Replace `.venv/bin/python` with `python3` if not using the virtualenv. Ensure `output/` exists (`mkdir -p output`) if needed.

@@ -1,107 +1,11 @@
 {
   "sources": [
     {
-      "name": "411.ca - Plumbing",
-      "category": "Plumbing",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "scan_phones_on_page": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://411.ca/"
-      },
-      "start_urls": [
-        "https://411.ca/business/search?q=Plumbing&st=on",
-        "https://411.ca/business/search?q=Plumbing&st=bc",
-        "https://411.ca/business/search?q=Plumbing&st=ab",
-        "https://411.ca/business/search?q=Plumbing&st=qc"
-      ],
-      "listing": {
-        "item_selector": [
-          "div.listing",
-          "div.result",
-          "article.listing",
-          "li",
-          "article",
-          "div[class*='result']"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "a.business-name::text",
-            "h3 a::text",
-            "[itemprop='name']::text",
-            "a[title]::attr(title)",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "span[itemprop='telephone']::text",
-            "div.phone::text",
-            ".phone::text"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)",
-            "a.website::attr(href)"
-          ],
-          "address": [
-            "div.address::text",
-            "address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "a.business-name",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/business/profile/']",
-          "a[href*='/business/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "business_name": [
-            "h1::text",
-            "[itemprop='name']::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "[itemprop='telephone']::text"
-          ],
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": [
-            "a[href^='http']",
-            "[itemprop='url']::attr(href)"
-          ],
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          "a.pagination__next",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
       "name": "Hotfrog - Plumbing",
       "category": "Plumbing",
       "region": "Canada",
       "jsonld_fallback": true,
-      "visit_website_for_email": true,
+      "visit_website_for_email": false,
       "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
@@ -184,107 +88,11 @@
       }
     },
     {
-      "name": "411.ca - HVAC",
-      "category": "HVAC",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "scan_phones_on_page": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://411.ca/"
-      },
-      "start_urls": [
-        "https://411.ca/business/search?q=HVAC&st=on",
-        "https://411.ca/business/search?q=HVAC&st=bc",
-        "https://411.ca/business/search?q=HVAC&st=ab",
-        "https://411.ca/business/search?q=HVAC&st=qc"
-      ],
-      "listing": {
-        "item_selector": [
-          "div.listing",
-          "div.result",
-          "article.listing",
-          "li",
-          "article",
-          "div[class*='result']"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "a.business-name::text",
-            "h3 a::text",
-            "[itemprop='name']::text",
-            "a[title]::attr(title)",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "span[itemprop='telephone']::text",
-            "div.phone::text",
-            ".phone::text"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)",
-            "a.website::attr(href)"
-          ],
-          "address": [
-            "div.address::text",
-            "address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "a.business-name",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/business/profile/']",
-          "a[href*='/business/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "business_name": [
-            "h1::text",
-            "[itemprop='name']::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "[itemprop='telephone']::text"
-          ],
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": [
-            "a[href^='http']",
-            "[itemprop='url']::attr(href)"
-          ],
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          "a.pagination__next",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
       "name": "Hotfrog - HVAC",
       "category": "HVAC",
       "region": "Canada",
       "jsonld_fallback": true,
-      "visit_website_for_email": true,
+      "visit_website_for_email": false,
       "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
@@ -367,473 +175,11 @@
       }
     },
     {
-      "name": "411.ca - Roofing",
-      "category": "Roofing",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "scan_phones_on_page": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://411.ca/"
-      },
-      "start_urls": [
-        "https://411.ca/business/search?q=Roofing&st=on",
-        "https://411.ca/business/search?q=Roofing&st=bc",
-        "https://411.ca/business/search?q=Roofing&st=ab",
-        "https://411.ca/business/search?q=Roofing&st=qc"
-      ],
-      "listing": {
-        "item_selector": [
-          "div.listing",
-          "div.result",
-          "article.listing",
-          "li",
-          "article",
-          "div[class*='result']"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "a.business-name::text",
-            "h3 a::text",
-            "[itemprop='name']::text",
-            "a[title]::attr(title)",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "span[itemprop='telephone']::text",
-            "div.phone::text",
-            ".phone::text"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)",
-            "a.website::attr(href)"
-          ],
-          "address": [
-            "div.address::text",
-            "address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "a.business-name",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/business/profile/']",
-          "a[href*='/business/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "business_name": [
-            "h1::text",
-            "[itemprop='name']::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "[itemprop='telephone']::text"
-          ],
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": [
-            "a[href^='http']",
-            "[itemprop='url']::attr(href)"
-          ],
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          "a.pagination__next",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Hotfrog - Roofing",
-      "category": "Roofing",
-      "region": "Canada",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "scan_phones_on_page": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.hotfrog.ca/"
-      },
-      "start_urls": [
-        "https://www.hotfrog.ca/find/roofing"
-      ],
-      "listing": {
-        "item_selector": [
-          "article",
-          "div.result",
-          "li",
-          "div.card",
-          "div.search-results__result"
-        ],
-        "fields": {
-          "business_name": [
-            "h3 a::text",
-            "h2 a::text",
-            "[itemprop='name']::text",
-            "a[title]::attr(title)",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "span[itemprop='telephone']::text",
-            "div.phone::text",
-            ".phone::text"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)"
-          ],
-          "address": [
-            "address::text",
-            "div.address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h3 a",
-          "h2 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/company/']",
-          "a[href*='/business/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "business_name": [
-            "h1::text",
-            "[itemprop='name']::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "[itemprop='telephone']::text"
-          ],
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": [
-            "a[href^='http']::attr(href)",
-            "[itemprop='url']::attr(href)"
-          ],
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "411.ca - Lawn Care",
-      "category": "Lawn Care",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "scan_phones_on_page": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://411.ca/"
-      },
-      "start_urls": [
-        "https://411.ca/business/search?q=Lawn%20Care&st=on",
-        "https://411.ca/business/search?q=Lawn%20Care&st=bc",
-        "https://411.ca/business/search?q=Lawn%20Care&st=ab",
-        "https://411.ca/business/search?q=Lawn%20Care&st=qc"
-      ],
-      "listing": {
-        "item_selector": [
-          "div.listing",
-          "div.result",
-          "article.listing",
-          "li",
-          "article",
-          "div[class*='result']"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "a.business-name::text",
-            "h3 a::text",
-            "[itemprop='name']::text",
-            "a[title]::attr(title)",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "span[itemprop='telephone']::text",
-            "div.phone::text",
-            ".phone::text"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)",
-            "a.website::attr(href)"
-          ],
-          "address": [
-            "div.address::text",
-            "address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "a.business-name",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/business/profile/']",
-          "a[href*='/business/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "business_name": [
-            "h1::text",
-            "[itemprop='name']::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "[itemprop='telephone']::text"
-          ],
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": [
-            "a[href^='http']",
-            "[itemprop='url']::attr(href)"
-          ],
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          "a.pagination__next",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Hotfrog - Lawn Care",
-      "category": "Lawn Care",
-      "region": "Canada",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "scan_phones_on_page": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.hotfrog.ca/"
-      },
-      "start_urls": [
-        "https://www.hotfrog.ca/find/lawn-care"
-      ],
-      "listing": {
-        "item_selector": [
-          "article",
-          "div.result",
-          "li",
-          "div.card",
-          "div.search-results__result"
-        ],
-        "fields": {
-          "business_name": [
-            "h3 a::text",
-            "h2 a::text",
-            "[itemprop='name']::text",
-            "a[title]::attr(title)",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "span[itemprop='telephone']::text",
-            "div.phone::text",
-            ".phone::text"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)"
-          ],
-          "address": [
-            "address::text",
-            "div.address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h3 a",
-          "h2 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/company/']",
-          "a[href*='/business/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "business_name": [
-            "h1::text",
-            "[itemprop='name']::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "[itemprop='telephone']::text"
-          ],
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": [
-            "a[href^='http']::attr(href)",
-            "[itemprop='url']::attr(href)"
-          ],
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "411.ca - Electrician",
-      "category": "Electrician",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "scan_phones_on_page": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://411.ca/"
-      },
-      "start_urls": [
-        "https://411.ca/business/search?q=Electrician&st=on",
-        "https://411.ca/business/search?q=Electrician&st=bc",
-        "https://411.ca/business/search?q=Electrician&st=ab",
-        "https://411.ca/business/search?q=Electrician&st=qc"
-      ],
-      "listing": {
-        "item_selector": [
-          "div.listing",
-          "div.result",
-          "article.listing",
-          "li",
-          "article",
-          "div[class*='result']"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "a.business-name::text",
-            "h3 a::text",
-            "[itemprop='name']::text",
-            "a[title]::attr(title)",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "span[itemprop='telephone']::text",
-            "div.phone::text",
-            ".phone::text"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)",
-            "a.website::attr(href)"
-          ],
-          "address": [
-            "div.address::text",
-            "address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "a.business-name",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/business/profile/']",
-          "a[href*='/business/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "business_name": [
-            "h1::text",
-            "[itemprop='name']::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "[itemprop='telephone']::text"
-          ],
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": [
-            "a[href^='http']",
-            "[itemprop='url']::attr(href)"
-          ],
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          "a.pagination__next",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
       "name": "Hotfrog - Electrician",
       "category": "Electrician",
       "region": "Canada",
       "jsonld_fallback": true,
-      "visit_website_for_email": true,
+      "visit_website_for_email": false,
       "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
@@ -916,107 +262,11 @@
       }
     },
     {
-      "name": "411.ca - Pest Control",
-      "category": "Pest Control",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "scan_phones_on_page": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://411.ca/"
-      },
-      "start_urls": [
-        "https://411.ca/business/search?q=Pest%20Control&st=on",
-        "https://411.ca/business/search?q=Pest%20Control&st=bc",
-        "https://411.ca/business/search?q=Pest%20Control&st=ab",
-        "https://411.ca/business/search?q=Pest%20Control&st=qc"
-      ],
-      "listing": {
-        "item_selector": [
-          "div.listing",
-          "div.result",
-          "article.listing",
-          "li",
-          "article",
-          "div[class*='result']"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "a.business-name::text",
-            "h3 a::text",
-            "[itemprop='name']::text",
-            "a[title]::attr(title)",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "span[itemprop='telephone']::text",
-            "div.phone::text",
-            ".phone::text"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)",
-            "a.website::attr(href)"
-          ],
-          "address": [
-            "div.address::text",
-            "address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "a.business-name",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/business/profile/']",
-          "a[href*='/business/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "business_name": [
-            "h1::text",
-            "[itemprop='name']::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "[itemprop='telephone']::text"
-          ],
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": [
-            "a[href^='http']",
-            "[itemprop='url']::attr(href)"
-          ],
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          "a.pagination__next",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Hotfrog - Pest Control",
-      "category": "Pest Control",
+      "name": "Hotfrog - Roofing",
+      "category": "Roofing",
       "region": "Canada",
       "jsonld_fallback": true,
-      "visit_website_for_email": true,
+      "visit_website_for_email": false,
       "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
@@ -1025,7 +275,7 @@
         "Referer": "https://www.hotfrog.ca/"
       },
       "start_urls": [
-        "https://www.hotfrog.ca/find/pest-control"
+        "https://www.hotfrog.ca/find/roofing"
       ],
       "listing": {
         "item_selector": [
@@ -1099,107 +349,11 @@
       }
     },
     {
-      "name": "411.ca - Appliance Repair",
-      "category": "Appliance Repair",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "scan_phones_on_page": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://411.ca/"
-      },
-      "start_urls": [
-        "https://411.ca/business/search?q=Appliance%20Repair&st=on",
-        "https://411.ca/business/search?q=Appliance%20Repair&st=bc",
-        "https://411.ca/business/search?q=Appliance%20Repair&st=ab",
-        "https://411.ca/business/search?q=Appliance%20Repair&st=qc"
-      ],
-      "listing": {
-        "item_selector": [
-          "div.listing",
-          "div.result",
-          "article.listing",
-          "li",
-          "article",
-          "div[class*='result']"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "a.business-name::text",
-            "h3 a::text",
-            "[itemprop='name']::text",
-            "a[title]::attr(title)",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "span[itemprop='telephone']::text",
-            "div.phone::text",
-            ".phone::text"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)",
-            "a.website::attr(href)"
-          ],
-          "address": [
-            "div.address::text",
-            "address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "a.business-name",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/business/profile/']",
-          "a[href*='/business/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "business_name": [
-            "h1::text",
-            "[itemprop='name']::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "[itemprop='telephone']::text"
-          ],
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": [
-            "a[href^='http']",
-            "[itemprop='url']::attr(href)"
-          ],
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          "a.pagination__next",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Hotfrog - Appliance Repair",
-      "category": "Appliance Repair",
+      "name": "Hotfrog - Landscaping",
+      "category": "Landscaping",
       "region": "Canada",
       "jsonld_fallback": true,
-      "visit_website_for_email": true,
+      "visit_website_for_email": false,
       "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
@@ -1208,7 +362,7 @@
         "Referer": "https://www.hotfrog.ca/"
       },
       "start_urls": [
-        "https://www.hotfrog.ca/find/appliance-repair"
+        "https://www.hotfrog.ca/find/landscaping"
       ],
       "listing": {
         "item_selector": [
@@ -1273,468 +427,6 @@
           "a[rel='next']",
           "a.next",
           "a[aria-label='Next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "411.ca - Moving",
-      "category": "Moving",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "scan_phones_on_page": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://411.ca/"
-      },
-      "start_urls": [
-        "https://411.ca/business/search?q=Moving&st=on",
-        "https://411.ca/business/search?q=Moving&st=bc",
-        "https://411.ca/business/search?q=Moving&st=ab",
-        "https://411.ca/business/search?q=Moving&st=qc"
-      ],
-      "listing": {
-        "item_selector": [
-          "div.listing",
-          "div.result",
-          "article.listing",
-          "li",
-          "article",
-          "div[class*='result']"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "a.business-name::text",
-            "h3 a::text",
-            "[itemprop='name']::text",
-            "a[title]::attr(title)",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "span[itemprop='telephone']::text",
-            "div.phone::text",
-            ".phone::text"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)",
-            "a.website::attr(href)"
-          ],
-          "address": [
-            "div.address::text",
-            "address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "a.business-name",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/business/profile/']",
-          "a[href*='/business/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "business_name": [
-            "h1::text",
-            "[itemprop='name']::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "[itemprop='telephone']::text"
-          ],
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": [
-            "a[href^='http']",
-            "[itemprop='url']::attr(href)"
-          ],
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          "a.pagination__next",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Hotfrog - Moving",
-      "category": "Moving",
-      "region": "Canada",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "scan_phones_on_page": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.hotfrog.ca/"
-      },
-      "start_urls": [
-        "https://www.hotfrog.ca/find/moving"
-      ],
-      "listing": {
-        "item_selector": [
-          "article",
-          "div.result",
-          "li",
-          "div.card",
-          "div.search-results__result"
-        ],
-        "fields": {
-          "business_name": [
-            "h3 a::text",
-            "h2 a::text",
-            "[itemprop='name']::text",
-            "a[title]::attr(title)",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "span[itemprop='telephone']::text",
-            "div.phone::text",
-            ".phone::text"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)"
-          ],
-          "address": [
-            "address::text",
-            "div.address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h3 a",
-          "h2 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/company/']",
-          "a[href*='/business/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "business_name": [
-            "h1::text",
-            "[itemprop='name']::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "[itemprop='telephone']::text"
-          ],
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": [
-            "a[href^='http']::attr(href)",
-            "[itemprop='url']::attr(href)"
-          ],
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "411.ca - Junk Removal",
-      "category": "Junk Removal",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "scan_phones_on_page": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://411.ca/"
-      },
-      "start_urls": [
-        "https://411.ca/business/search?q=Junk%20Removal&st=on",
-        "https://411.ca/business/search?q=Junk%20Removal&st=bc",
-        "https://411.ca/business/search?q=Junk%20Removal&st=ab",
-        "https://411.ca/business/search?q=Junk%20Removal&st=qc"
-      ],
-      "listing": {
-        "item_selector": [
-          "div.listing",
-          "div.result",
-          "article.listing",
-          "li",
-          "article",
-          "div[class*='result']"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "a.business-name::text",
-            "h3 a::text",
-            "[itemprop='name']::text",
-            "a[title]::attr(title)",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "span[itemprop='telephone']::text",
-            "div.phone::text",
-            ".phone::text"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)",
-            "a.website::attr(href)"
-          ],
-          "address": [
-            "div.address::text",
-            "address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "a.business-name",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/business/profile/']",
-          "a[href*='/business/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "business_name": [
-            "h1::text",
-            "[itemprop='name']::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "[itemprop='telephone']::text"
-          ],
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": [
-            "a[href^='http']",
-            "[itemprop='url']::attr(href)"
-          ],
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          "a.pagination__next",
-          ".pagination a[rel='next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "Hotfrog - Junk Removal",
-      "category": "Junk Removal",
-      "region": "Canada",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "scan_phones_on_page": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://www.hotfrog.ca/"
-      },
-      "start_urls": [
-        "https://www.hotfrog.ca/find/junk-removal"
-      ],
-      "listing": {
-        "item_selector": [
-          "article",
-          "div.result",
-          "li",
-          "div.card",
-          "div.search-results__result"
-        ],
-        "fields": {
-          "business_name": [
-            "h3 a::text",
-            "h2 a::text",
-            "[itemprop='name']::text",
-            "a[title]::attr(title)",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "span[itemprop='telephone']::text",
-            "div.phone::text",
-            ".phone::text"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)"
-          ],
-          "address": [
-            "address::text",
-            "div.address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h3 a",
-          "h2 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/company/']",
-          "a[href*='/business/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "business_name": [
-            "h1::text",
-            "[itemprop='name']::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "[itemprop='telephone']::text"
-          ],
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": [
-            "a[href^='http']::attr(href)",
-            "[itemprop='url']::attr(href)"
-          ],
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']"
-        ],
-        "param": {
-          "name": "page",
-          "start": 1,
-          "max_pages": 40
-        }
-      }
-    },
-    {
-      "name": "411.ca - Handyman",
-      "category": "Handyman",
-      "region": "ON, BC, AB, QC",
-      "jsonld_fallback": true,
-      "visit_website_for_email": true,
-      "scan_phones_on_page": true,
-      "headers": {
-        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
-        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-        "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://411.ca/"
-      },
-      "start_urls": [
-        "https://411.ca/business/search?q=Handyman&st=on",
-        "https://411.ca/business/search?q=Handyman&st=bc",
-        "https://411.ca/business/search?q=Handyman&st=ab",
-        "https://411.ca/business/search?q=Handyman&st=qc"
-      ],
-      "listing": {
-        "item_selector": [
-          "div.listing",
-          "div.result",
-          "article.listing",
-          "li",
-          "article",
-          "div[class*='result']"
-        ],
-        "fields": {
-          "business_name": [
-            "h2 a::text",
-            "a.business-name::text",
-            "h3 a::text",
-            "[itemprop='name']::text",
-            "a[title]::attr(title)",
-            "a::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "span[itemprop='telephone']::text",
-            "div.phone::text",
-            ".phone::text"
-          ],
-          "website": [
-            "a[href^='http']::attr(href)",
-            "a.website::attr(href)"
-          ],
-          "address": [
-            "div.address::text",
-            "address::text"
-          ]
-        },
-        "detail_link_selector": [
-          "h2 a",
-          "a.business-name",
-          "h3 a",
-          "a"
-        ],
-        "follow_links_selector": [
-          "a[href*='/business/profile/']",
-          "a[href*='/business/']"
-        ]
-      },
-      "detail": {
-        "fields": {
-          "business_name": [
-            "h1::text",
-            "[itemprop='name']::text"
-          ],
-          "phone": [
-            "a[href^='tel:']::attr(href)",
-            "[itemprop='telephone']::text"
-          ],
-          "email": "a[href^='mailto:']::attr(href)",
-          "website": [
-            "a[href^='http']",
-            "[itemprop='url']::attr(href)"
-          ],
-          "address": "address::text"
-        }
-      },
-      "pagination": {
-        "next_page_selector": [
-          "a[rel='next']",
-          "a.next",
-          "a[aria-label='Next']",
-          "a.pagination__next",
-          ".pagination a[rel='next']"
         ],
         "param": {
           "name": "page",
@@ -1748,7 +440,7 @@
       "category": "Handyman",
       "region": "Canada",
       "jsonld_fallback": true,
-      "visit_website_for_email": true,
+      "visit_website_for_email": false,
       "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
@@ -1831,38 +523,33 @@
       }
     },
     {
-      "name": "411.ca - Painting",
+      "name": "Hotfrog - Painting",
       "category": "Painting",
-      "region": "ON, BC, AB, QC",
+      "region": "Canada",
       "jsonld_fallback": true,
-      "visit_website_for_email": true,
+      "visit_website_for_email": false,
       "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
         "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
         "Accept-Language": "en-CA,en;q=0.9",
-        "Referer": "https://411.ca/"
+        "Referer": "https://www.hotfrog.ca/"
       },
       "start_urls": [
-        "https://411.ca/business/search?q=Painting&st=on",
-        "https://411.ca/business/search?q=Painting&st=bc",
-        "https://411.ca/business/search?q=Painting&st=ab",
-        "https://411.ca/business/search?q=Painting&st=qc"
+        "https://www.hotfrog.ca/find/painting"
       ],
       "listing": {
         "item_selector": [
-          "div.listing",
-          "div.result",
-          "article.listing",
-          "li",
           "article",
-          "div[class*='result']"
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
         ],
         "fields": {
           "business_name": [
-            "h2 a::text",
-            "a.business-name::text",
             "h3 a::text",
+            "h2 a::text",
             "[itemprop='name']::text",
             "a[title]::attr(title)",
             "a::text"
@@ -1874,22 +561,20 @@
             ".phone::text"
           ],
           "website": [
-            "a[href^='http']::attr(href)",
-            "a.website::attr(href)"
+            "a[href^='http']::attr(href)"
           ],
           "address": [
-            "div.address::text",
-            "address::text"
+            "address::text",
+            "div.address::text"
           ]
         },
         "detail_link_selector": [
-          "h2 a",
-          "a.business-name",
           "h3 a",
+          "h2 a",
           "a"
         ],
         "follow_links_selector": [
-          "a[href*='/business/profile/']",
+          "a[href*='/company/']",
           "a[href*='/business/']"
         ]
       },
@@ -1905,7 +590,7 @@
           ],
           "email": "a[href^='mailto:']::attr(href)",
           "website": [
-            "a[href^='http']",
+            "a[href^='http']::attr(href)",
             "[itemprop='url']::attr(href)"
           ],
           "address": "address::text"
@@ -1915,9 +600,7 @@
         "next_page_selector": [
           "a[rel='next']",
           "a.next",
-          "a[aria-label='Next']",
-          "a.pagination__next",
-          ".pagination a[rel='next']"
+          "a[aria-label='Next']"
         ],
         "param": {
           "name": "page",
@@ -1927,11 +610,11 @@
       }
     },
     {
-      "name": "Hotfrog - Painting",
-      "category": "Painting",
+      "name": "Hotfrog - Carpet Cleaning",
+      "category": "Carpet Cleaning",
       "region": "Canada",
       "jsonld_fallback": true,
-      "visit_website_for_email": true,
+      "visit_website_for_email": false,
       "scan_phones_on_page": true,
       "headers": {
         "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
@@ -1940,7 +623,1834 @@
         "Referer": "https://www.hotfrog.ca/"
       },
       "start_urls": [
-        "https://www.hotfrog.ca/find/painting"
+        "https://www.hotfrog.ca/find/carpet-cleaning"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Gutter Cleaning",
+      "category": "Gutter Cleaning",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/gutter-cleaning"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Pest Control",
+      "category": "Pest Control",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/pest-control"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Appliance Repair",
+      "category": "Appliance Repair",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/appliance-repair"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Moving",
+      "category": "Moving",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/moving"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Junk Removal",
+      "category": "Junk Removal",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/junk-removal"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Locksmith",
+      "category": "Locksmith",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/locksmith"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Security Systems",
+      "category": "Security Systems",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/security-systems"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Siding",
+      "category": "Siding",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/siding"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Concrete",
+      "category": "Concrete",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/concrete"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Tree Service",
+      "category": "Tree Service",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/tree-service"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Snow Removal",
+      "category": "Snow Removal",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/snow-removal"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Duct Cleaning",
+      "category": "Duct Cleaning",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/duct-cleaning"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Insulation",
+      "category": "Insulation",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/insulation"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Water Damage Restoration",
+      "category": "Water Damage Restoration",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/water-damage-restoration"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Window Installation",
+      "category": "Window Installation",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/window-installation"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Door Installation",
+      "category": "Door Installation",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/door-installation"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Drywall",
+      "category": "Drywall",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/drywall"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Demolition",
+      "category": "Demolition",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/demolition"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Fence Repair",
+      "category": "Fence Repair",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/fence-repair"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Deck Builder",
+      "category": "Deck Builder",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/deck-builder"
+      ],
+      "listing": {
+        "item_selector": [
+          "article",
+          "div.result",
+          "li",
+          "div.card",
+          "div.search-results__result"
+        ],
+        "fields": {
+          "business_name": [
+            "h3 a::text",
+            "h2 a::text",
+            "[itemprop='name']::text",
+            "a[title]::attr(title)",
+            "a::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "span[itemprop='telephone']::text",
+            "div.phone::text",
+            ".phone::text"
+          ],
+          "website": [
+            "a[href^='http']::attr(href)"
+          ],
+          "address": [
+            "address::text",
+            "div.address::text"
+          ]
+        },
+        "detail_link_selector": [
+          "h3 a",
+          "h2 a",
+          "a"
+        ],
+        "follow_links_selector": [
+          "a[href*='/company/']",
+          "a[href*='/business/']"
+        ]
+      },
+      "detail": {
+        "fields": {
+          "business_name": [
+            "h1::text",
+            "[itemprop='name']::text"
+          ],
+          "phone": [
+            "a[href^='tel:']::attr(href)",
+            "[itemprop='telephone']::text"
+          ],
+          "email": "a[href^='mailto:']::attr(href)",
+          "website": [
+            "a[href^='http']::attr(href)",
+            "[itemprop='url']::attr(href)"
+          ],
+          "address": "address::text"
+        }
+      },
+      "pagination": {
+        "next_page_selector": [
+          "a[rel='next']",
+          "a.next",
+          "a[aria-label='Next']"
+        ],
+        "param": {
+          "name": "page",
+          "start": 1,
+          "max_pages": 40
+        }
+      }
+    },
+    {
+      "name": "Hotfrog - Garage Door",
+      "category": "Garage Door",
+      "region": "Canada",
+      "jsonld_fallback": true,
+      "visit_website_for_email": false,
+      "scan_phones_on_page": true,
+      "headers": {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Accept-Language": "en-CA,en;q=0.9",
+        "Referer": "https://www.hotfrog.ca/"
+      },
+      "start_urls": [
+        "https://www.hotfrog.ca/find/garage-door"
       ],
       "listing": {
         "item_selector": [

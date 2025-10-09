@@ -95,13 +95,20 @@ sources:
     - article
     - div.result
     - li
+    - div.card
+    - div.search-results__result
     fields:
       business_name:
       - h3 a::text
+      - h2 a::text
+      - [itemprop='name']::text
+      - a[title]::attr(title)
       - a::text
       phone:
       - a[href^='tel:']::attr(href)
+      - span[itemprop='telephone']::text
       - div.phone::text
+      - .phone::text
       website:
       - a[href^='http']::attr(href)
       address:
@@ -109,15 +116,25 @@ sources:
       - div.address::text
     detail_link_selector:
     - h3 a
+    - h2 a
     - a
     follow_links_selector:
     - a[href*='/company/']
     - a[href*='/business/']
   detail:
     fields:
+      business_name:
+      - h1::text
+      - [itemprop='name']::text
+      phone:
+      - a[href^='tel:']::attr(href)
+      - [itemprop='telephone']::text
       email: a[href^='mailto:']::attr(href)
-      website: a[href^='http']::attr(href)
+      website:
+      - a[href^='http']::attr(href)
+      - [itemprop='url']::attr(href)
       address: address::text
+  scan_phones_on_page: true
   pagination:
     next_page_selector:
     - a[rel='next']

@@ -131,14 +131,25 @@ def build_dynamic_sources(selected_sources: list[str], categories: list[str], pr
     }
 
     sel_hotfrog = {
-        "item_selector": ["article", "div.result", "li"],
+        "item_selector": ["article", "div.result", "li", "div.card", "div.search-results__result"],
         "fields": {
-            "business_name": ["h3 a::text", "a::text"],
-            "phone": ["a[href^='tel:']::attr(href)", "div.phone::text"],
+            "business_name": [
+                "h3 a::text",
+                "h2 a::text",
+                "[itemprop='name']::text",
+                "a[title]::attr(title)",
+                "a::text",
+            ],
+            "phone": [
+                "a[href^='tel:']::attr(href)",
+                "span[itemprop='telephone']::text",
+                "div.phone::text",
+                ".phone::text",
+            ],
             "website": ["a[href^='http']::attr(href)"],
             "address": ["address::text", "div.address::text"],
         },
-        "detail_link_selector": ["h3 a", "a"],
+        "detail_link_selector": ["h3 a", "h2 a", "a"],
         "follow_links_selector": ["a[href*='/company/']", "a[href*='/business/']"],
     }
 
@@ -196,10 +207,17 @@ def build_dynamic_sources(selected_sources: list[str], categories: list[str], pr
                 "region": "Canada",
                 "jsonld_fallback": True,
                 "visit_website_for_email": visit_web_email,
+                "scan_phones_on_page": True,
                 "headers": {**headers, "Referer": "https://www.hotfrog.ca/"},
                 "start_urls": start_urls,
                 "listing": sel_hotfrog,
-                "detail": {"fields": {"email": "a[href^='mailto:']::attr(href)", "website": "a[href^='http']::attr(href)", "address": "address::text"}},
+                "detail": {"fields": {
+                    "business_name": ["h1::text", "[itemprop='name']::text"],
+                    "phone": ["a[href^='tel:']::attr(href)", "[itemprop='telephone']::text"],
+                    "email": "a[href^='mailto:']::attr(href)",
+                    "website": ["a[href^='http']::attr(href)", "[itemprop='url']::attr(href)"],
+                    "address": "address::text"
+                }},
                 "pagination": {
                     "next_page_selector": ["a[rel='next']", "a.next", "a[aria-label='Next']"],
                     "param": {"name": "page", "start": 1, "max_pages": 40},
